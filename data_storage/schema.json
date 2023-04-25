@@ -9,7 +9,7 @@ db.createCollection("data", {
                     description: "Computer's IP address"
                 },
                 date: {
-                    bsonType: "double",
+                    bsonType: "string",
                     description: "Day"
                 },
                 GPU: {
