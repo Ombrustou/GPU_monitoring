@@ -1,0 +1,50 @@
+db.createCollection("data", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["IP","date","time"],
+            properties: {
+                IP: {
+                    bsonType: "string",
+                    description: "Computer's IP address"
+                },
+                date: {
+                    bsonType: "string",
+                    description: "Day"
+                },
+                Time: {
+                    bsonType: "string",
+                    description: "Time when the data is collected"
+                },
+                GPU: {
+                    bsonType: "object",
+                    required: ["number","name","temperature","usage","max_capacity"],
+                    properties: {
+                        number:{
+                            bsonType: "int",
+                            minimum: 0,
+                            description: "The number of the GPU"
+                        },
+                        name: {
+                            bsonType: "string",
+                            description: "The name of the GPU"
+                        },
+                        temperature: {
+                            bsonType: "double",
+                            description: "The temperature of the GPU"
+                        },
+                        usage: {
+                            bsonType: "double",
+                            description: "the used of the GPU"
+                        },
+                        max_capacity: {
+                            bsonType: "double",
+                            description: "The maximum capacity of the GPU"
+                        }
+                    },
+                    description: "a Graphical Process Unit"
+                }
+            }
+        }
+    }
+})
