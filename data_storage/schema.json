@@ -2,7 +2,7 @@ db.createCollection("data", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["IP","no_response"],
+            required: ["IP","no_response","GPU"],
             properties: {
                 IP: {
                     bsonType: "string",
