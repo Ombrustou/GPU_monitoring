@@ -33,14 +33,11 @@ while True:
                     obj.append({"number":int(gpu[0]),"name":gpu[1],"temperature":float(gpu[2]),"max_capacity":float(gpu[3].split(" ")[0]),"usage":float(gpu[4].split(" ")[0])})
 
                 print(obj)    
-                #db.data.update_one({"IP":computer[0]},{$set {"IP":computer[0],"GPU":obj, "lost_connect":False}},{ "upsert" : "true" })
+                #db.data.update_one({"IP":computer[0]},{$set {"IP":computer[0],"GPU":obj, "no_response":0}},{ "upsert" : "true" })
             except:
                 if(computer[0] in computer_notResponding):
                     computer_notResponding[computer[0]] += 1
-                    """
-                    if(computer_notResponding[computer[0]] >= 3):
-                        db.data.update_one({"IP":computer[0]},{$set {"IP":computer[0], "lost_connect":True, "GPU":[]}},{ "upsert" : "true" })
-                    """
+                    #db.data.update_one({"IP":computer[0]},{$set {"IP":computer[0], "no_response":computer_notResponding[computer[0]], "GPU":[]}},{ "upsert" : "true" })
                 else:
                     computer_notResponding[computer[0]] = 1 
             finally:
