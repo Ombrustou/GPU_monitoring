@@ -6,11 +6,7 @@ db.createCollection("data", {
             properties: {
                 IP: {
                     bsonType: "string",
-                    description: "Computer's IP address"
-                },
-                date: {
-                    bsonType: "string",
-                    description: "Day"
+                    description: "The IP need to be a string"
                 },
                 GPU: {
                     bsonType: "object",
@@ -19,26 +15,26 @@ db.createCollection("data", {
                         number:{
                             bsonType: "int",
                             minimum: 0,
-                            description: "The number of the GPU"
+                            description: "The number of the GPU need to be an Integer"
                         },
                         name: {
                             bsonType: "string",
-                            description: "The name of the GPU"
+                            description: "The name of the GPU need to be a string"
                         },
                         temperature: {
                             bsonType: "double",
-                            description: "The temperature of the GPU"
+                            description: "The temperature of the GPU need to be a double"
                         },
                         usage: {
                             bsonType: "double",
-                            description: "the used of the GPU"
+                            description: "the usage of the GPU need to be a double"
                         },
                         max_capacity: {
                             bsonType: "double",
-                            description: "The maximum capacity of the GPU"
+                            description: "The maximum capacity of the GPU need to be a double"
                         }
                     },
-                    description: "a Graphical Process Unit"
+                    description: "a GPU need a number, a name, a temperature, the usage, the max capacity"
                 }
             }
         }
