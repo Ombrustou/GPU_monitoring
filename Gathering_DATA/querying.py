@@ -44,12 +44,12 @@ while True:
             except:
                 if(computer[0] in computer_notResponding):
                     computer_notResponding[computer[0]] += 1
-                    #Update the document for the IP, if it doesn't exist insert a new one
-                    db.data.update_one({"IP":computer[0]},{"$set": {"IP":computer[0], "no_response":computer_notResponding[computer[0]], "GPU":[]}},True)
                 else:
                     computer_notResponding[computer[0]] = 1 
+                #Update the document for the IP, if it doesn't exist insert a new one
+                db.data.update_one({"IP":computer[0]},{"$set": {"IP":computer[0], "no_response":computer_notResponding[computer[0]], "GPU":[]}},True)
             finally:
                 client.close()
         
     
-    time.sleep(300)
+    time.sleep(100)
