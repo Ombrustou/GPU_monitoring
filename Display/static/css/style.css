@@ -1,0 +1,54 @@
+
+/* image 1 */
+body{
+    background: url(/static/media/bgTest.jpeg);
+    background-size: cover;
+    height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 17.5%;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease-in-out;
+    right: 0;
+  }
+  
+  .sidebar-right {
+    right: 0;
+  }
+  
+  .sidebar.collapsed {
+    width: 7%;
+  }
+  
+  .sidebar-header {
+    padding: 10px;
+    text-align: center;
+    background-color: #e9ecef;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .sidebar-content {
+    padding: 10px;
+  }
+  
+  /* Set a default margin for the body */
+  body {
+    margin-left: 150px;
+  }
+  
+  /* Add a class to the body when the sidebar is collapsed */
+  body.collapsed {
+    margin-left: 80px;
+  }
+
+
+  .connected {
+    margin-top: 0%;
+    width: 15%;
+    height: 15%;
+    
+  }
