@@ -2,25 +2,25 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 const { ObjectId } = require('mongodb');
 const { Number } = require('mongodb');
-const cors = require('cors'); // Ajout du module CORS
+const cors = require('cors'); // Add CORS module
 
 const url = 'mongodb://localhost:27017';
 const dbName = 'monitoring';
 const dbCollection = 'data';
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Créer une application Express
+// Create an Epress app
 const app = express();
 
-// Ajouter le middleware CORS
+// Add CORS middleware 
 app.use(cors());
 
-// Ajouter le middleware pour gérer les données JSON entrantes
+// Add the middle for new data
 app.use(express.json());
 
 
-// Connecter à la base de données MongoDB
-let isConnected = false; // Ajout d'un drapeau pour éviter les connexions multiples
+// Connect to the database
+let isConnected = false; // add a flag to avoid multiple connexion
 const connectToDatabase = async () => {
   try {
     if (!isConnected) {
@@ -37,13 +37,13 @@ const connectToDatabase = async () => {
     console.log('Sélection de la collection ', dbCollection);
 
 
-    // Définir les routes pour MongoDB
+    // Define MongoDB ways
     app.get('/monitoring', async (req, res) => {
       const data = await collectionMongo.find().toArray();
       res.send(data);
     });
 
-    // Démarrer le serveur
+    // Start the server
     const port = process.env.PORT || 3001;
     app.listen(port, () => {
       console.log(`Serveur démarré sur le port ${port}`);
