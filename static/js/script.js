@@ -10,7 +10,7 @@ axios.get('http://localhost:3001/monitoring')
                     computers:computerList
                 }
             }
-        }).mount('#body')
+        }).mount('.app')
     })
     .catch(function (error){
     //handle error
