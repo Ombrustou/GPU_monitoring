@@ -20,7 +20,7 @@ while True:
         for computer in computers:
             #Create a client
             client = paramiko.SSHClient()
-            client.load_system_host_keys()
+            client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
             #If we can connect to the remote computer
             try:
@@ -54,4 +54,4 @@ while True:
                 client.close()
         
     
-    time.sleep(30)
+    time.sleep(3)
