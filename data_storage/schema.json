@@ -1,3 +1,5 @@
+use monitoring
+
 db.createCollection("data", {
     validator: {
         $jsonSchema: {
