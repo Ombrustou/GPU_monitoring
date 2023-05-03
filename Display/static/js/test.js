@@ -546,7 +546,7 @@ const app = Vue.createApp({
       console.log('App Mounted');
       setInterval(() => {
         this.gather();
-      }, 3000);
+      }, 300000);
   }
   });
   
