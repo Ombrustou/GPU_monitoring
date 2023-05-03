@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "API",
   "version": "1.0.0",
   "description": "API to GET data from mongoDB database",
   "main": "server.js",
