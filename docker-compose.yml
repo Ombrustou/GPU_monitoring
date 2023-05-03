@@ -1,0 +1,24 @@
+version: '3'
+services:
+  api:
+    build: ./API/
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+  db:
+    build: ./data_storage/
+    ports:
+      - "27017:27017"
+
+  gathering_data:
+    build: ./Gathering_DATA/
+    depends_on:
+      - db
+
+  display:
+    build: ./Display/
+    ports:
+      - "80:80"
+    depends_on:
+      - db

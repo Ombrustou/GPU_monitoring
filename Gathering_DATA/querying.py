@@ -4,7 +4,7 @@ import time
 from pymongo import MongoClient
 
 mongoClient = MongoClient('localhost', 27017)
-db = mongoClient.monitoring
+db = mongoClient.GPU_monitoring
 
 #Create a dict to store number of response not
 computer_notResponding = {}
@@ -47,6 +47,7 @@ while True:
                     computer_notResponding[computer[0]] += 1
                 else:
                     computer_notResponding[computer[0]] = 1 
+                    
                 #Update the document for the IP, if it doesn't exist insert a new one
                 db.data.update_one({"IP":computer[0]},{"$set": {"IP":computer[0], "no_response":computer_notResponding[computer[0]], "GPU":[]}},True)
             finally:
