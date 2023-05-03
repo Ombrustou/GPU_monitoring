@@ -464,6 +464,7 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         }]
+
       }
     },
     methods: {
@@ -473,10 +474,10 @@ const app = Vue.createApp({
       }, 
       //Query the API to obtain the GPUs information
       gather: function() {
+        appli = this
         axios.get('http://localhost:3001/monitoring')
         .then(function (response){
-          computerList = response.data
-          console.log(response);
+          appli.computerList = response.data
         })
         .catch(function (error){
           //handle error
@@ -546,7 +547,7 @@ const app = Vue.createApp({
       console.log('App Mounted');
       setInterval(() => {
         this.gather();
-      }, 300000);
+      }, 3000);
   }
   });
   
