@@ -1,22 +1,23 @@
 
 /* image 1 */
 body{
-    background: url(/static/media/bgTest.jpeg);
+  max-width: 99.4%;
+    background: url(../media/bgTest.jpeg);
     background-size: cover;
     height: 100vh;
 }
 
 .sidebar {
     position: fixed;
+    text-align: center;
+    border-bottom-left-radius: 2em;
+    border-top-left-radius: 2em;
+
     top: 0;
     bottom: 0;
     width: 17.5%;
     background-color: #f8f9fa;
     transition: all 0.3s ease-in-out;
-    right: 0;
-  }
-  
-  .sidebar-right {
     right: 0;
   }
   
@@ -27,28 +28,85 @@ body{
   .sidebar-header {
     padding: 10px;
     text-align: center;
+    border-top-left-radius: 2em;
     background-color: #e9ecef;
     border-bottom: 1px solid #dee2e6;
   }
   
-  .sidebar-content {
-    padding: 10px;
-  }
   
-  /* Set a default margin for the body */
-  body {
-    margin-left: 150px;
-  }
-  
+
   /* Add a class to the body when the sidebar is collapsed */
   body.collapsed {
     margin-left: 80px;
   }
 
 
-  .connected {
+  .connectedIcon {
     margin-top: 0%;
+    margin-right: 0%;
+    padding-right: 0%;
     width: 15%;
     height: 15%;
     
   }
+
+  .card-title{
+    width: 60%;
+    padding-left: 15%;
+    padding-top: 1%;
+  }
+
+  .status-led{
+    left:0%;
+    width: 2em;
+    height: 2em;
+  }
+
+  .list-group-item{
+    padding-top: 1%;
+    padding-bottom: 1%;
+  }
+
+  .info{
+    padding-top: 1%;
+  }
+
+  .flex-container {
+    padding-top: 2%;
+    padding-left: 3%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    border-radius: 0.7em;
+    flex-basis: 22%; /* 4 items per line */
+    text-align: center;
+  }
+
+  .connected {
+    background-color: lightgray;
+    opacity: 70%;
+  }
+
+
+.scroll-area-sm {
+    height: 7em;
+    overflow-x: hidden;
+}
+
+.notif{
+  width: 5em;
+}
+
+.aau{
+  bottom: 1%;
+  width: 5em;
+  position: absolute;
+  transform: translateX(-50%);
+
+}
+
+.name{
+  font-size: xx-large;
+}
