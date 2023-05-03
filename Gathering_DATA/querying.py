@@ -54,4 +54,4 @@ while True:
                 client.close()
         
     
-    time.sleep(100)
+    time.sleep(30)
