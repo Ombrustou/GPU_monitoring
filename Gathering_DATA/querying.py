@@ -4,7 +4,7 @@ import time
 from pymongo import MongoClient
 
 mongoClient = MongoClient('localhost', 27017)
-db = mongoClient.GPU_monitoring
+db = mongoClient.monitoring
 
 #Create a dict to store number of response not
 computer_notResponding = {}
@@ -17,7 +17,7 @@ while True:
         #Parse each line
         computers = [computer.split(",") for computer in computers]
 
-        for computer in computers:collectionMongo.find().toArray();
+        for computer in computers:
             #Create a client
             client = paramiko.SSHClient()
             client.load_system_host_keys()
