@@ -6,7 +6,7 @@ const app = Vue.createApp({
         collapsed: true,
         computerList:[{
           IP: "192.168.123.123",
-          no_response: 1,
+          no_response: 0,
           GPU: [{
             id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
@@ -84,7 +84,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.123",
-          no_response: 1,
+          no_response: 1554,
           GPU: [{
             id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
@@ -160,7 +160,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.123",
-          no_response: 1,
+          no_response: 0,
           GPU: [{
             id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
@@ -198,7 +198,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.123",
-          no_response: 1,
+          no_response: 0,
           GPU: [{
             id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
@@ -236,7 +236,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.123",
-          no_response: 1,
+          no_response: 1456468436163465436845487,
           GPU: [{
             id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
@@ -488,6 +488,30 @@ const app = Vue.createApp({
           return gpu_usage * 100 / gpu_max_capacity;
       },
 
+      getDisconnectedTime: function(nbTicks) {
+        const minute = 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+        const month = day * 30;
+      
+        let duration = '';
+        seconds = nbTicks * 300 -300
+        
+        if(seconds >= month){
+          duration = `${Math.floor(seconds / month)} months ${Math.floor((seconds % month) / day)}d`;
+        } else if (seconds >= day) {
+          duration = `${Math.floor(seconds / day)}d ${Math.floor((seconds % day) / hour)}h`;
+        } else if (seconds >= hour) {
+          duration = `${Math.floor(seconds / hour)}h ${Math.floor((seconds % hour) / minute)}m`;
+        } else if (seconds >= minute) {
+          duration = `${Math.floor(seconds / minute)}m`;
+        } else {
+          duration = `now`;
+        }
+      
+        return duration;
+      },
+
       //aims to vanish, useful for tests
       test: function() {
         this.testVa = this.testVa + 1
@@ -515,13 +539,13 @@ const app = Vue.createApp({
      * This mounted() function is called whenever the application is mounted
      * Define an interval in which the informations will be gathered.
      * 1000 -> 1second
-     * Set by default to 600000 -> 10minutes
+     * Set by default to 300000 -> 5minutes
      */
     mounted(){
       console.log('App Mounted');
       setInterval(() => {
         this.gather();
-      }, 600000);
+      }, 300000);
   }
   });
   

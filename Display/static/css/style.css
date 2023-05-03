@@ -41,7 +41,7 @@ body{
   }
 
 
-  .connected {
+  .connectedIcon {
     margin-top: 0%;
     margin-right: 0%;
     padding-right: 0%;
@@ -84,14 +84,10 @@ body{
     text-align: center;
   }
 
-.tasks{
-    max-height: 50%;
-}
-
-i {
-    font-style: italic;
-}
-
+  .connected {
+    background-color: lightgray;
+    opacity: 70%;
+  }
 
 
 .scroll-area-sm {
