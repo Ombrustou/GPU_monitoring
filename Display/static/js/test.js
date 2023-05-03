@@ -4,6 +4,7 @@ const app = Vue.createApp({
     data() {
       return {
         collapsed: true,
+        logs: [],
         computerList:[{
           IP: "192.168.123.123",
           no_response: 0,
@@ -485,7 +486,7 @@ const app = Vue.createApp({
       },
       //Transforms the usage of a GPU into a percentage of usage
       toPercent : function(gpu_usage, gpu_max_capacity){
-          return gpu_usage * 100 / gpu_max_capacity;
+          return Math.round(gpu_usage * 100 / gpu_max_capacity);
       },
 
       getDisconnectedTime: function(nbTicks) {
