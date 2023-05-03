@@ -1,9 +1,10 @@
+#Written by COSTAMAGNA Baptiste
 import paramiko
 import time
 from pymongo import MongoClient
 
 mongoClient = MongoClient('localhost', 27017)
-db = mongoClient.GPU_monitoring
+db = mongoClient.monitoring
 
 #Create a dict to store number of response not
 computer_notResponding = {}
