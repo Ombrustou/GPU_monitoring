@@ -1,6 +1,7 @@
 
 /* image 1 */
 body{
+  max-width: 99.4%;
     background: url(../media/bgTest.jpeg);
     background-size: cover;
     height: 100vh;
@@ -8,6 +9,10 @@ body{
 
 .sidebar {
     position: fixed;
+    text-align: center;
+    border-bottom-left-radius: 2em;
+    border-top-left-radius: 2em;
+
     top: 0;
     bottom: 0;
     width: 17.5%;
@@ -23,6 +28,7 @@ body{
   .sidebar-header {
     padding: 10px;
     text-align: center;
+    border-top-left-radius: 2em;
     background-color: #e9ecef;
     border-bottom: 1px solid #dee2e6;
   }
@@ -39,14 +45,29 @@ body{
     margin-top: 0%;
     margin-right: 0%;
     padding-right: 0%;
-    width: 14%;
-    height: 14%;
+    width: 15%;
+    height: 15%;
     
   }
 
   .card-title{
     width: 60%;
     padding-left: 15%;
+    padding-top: 1%;
+  }
+
+  .status-led{
+    left:0%;
+    width: 2em;
+    height: 2em;
+  }
+
+  .list-group-item{
+    padding-top: 1%;
+    padding-bottom: 1%;
+  }
+
+  .info{
     padding-top: 1%;
   }
 
@@ -58,6 +79,7 @@ body{
   }
   
   .card {
+    border-radius: 0.7em;
     flex-basis: 22%; /* 4 items per line */
     text-align: center;
   }
@@ -80,22 +102,13 @@ i {
 .notif{
   width: 5em;
 }
-.aau.collapsed{
-  top:0;
-  width: 75%;
-  padding-top: 600%;
-  bottom: 0;
-  margin-left: 15%;
-  margin-right: 15%;
-}
 
 .aau{
-  top:0;
-  width: 50%;
-  padding-top: 210%;
-  bottom: 0;
-  margin-left: 25%;
-  margin-right: 25%;
+  bottom: 1%;
+  width: 5em;
+  position: absolute;
+  transform: translateX(-50%);
+
 }
 
 .name{

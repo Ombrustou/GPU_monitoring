@@ -17,7 +17,7 @@ while True:
         #Parse each line
         computers = [computer.split(",") for computer in computers]
 
-        for computer in computers:
+        for computer in computers:collectionMongo.find().toArray();
             #Create a client
             client = paramiko.SSHClient()
             client.load_system_host_keys()

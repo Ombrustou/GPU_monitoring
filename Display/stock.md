@@ -39,4 +39,33 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+    .aau.collapsed{
+  top:0;
+  width: 75%;
+  padding-top: 600%;
+  bottom: 0;
+  margin-left: 15%;
+  margin-right: 15%;
+  transition: none;
+
+}
+
+.aau{
+  top:0;
+  width: 50%;
+  padding-top: 210%;
+  bottom: 0;
+  margin-left: 25%;
+  margin-right: 25%;
+  transition: none;
+}
 ```
