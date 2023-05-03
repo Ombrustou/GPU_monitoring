@@ -2,23 +2,21 @@ version: '3'
 services:
   api:
     build: ./API/
-    ports:
-      - "3001:3001"
+    network_mode: host
     depends_on:
       - db
   db:
     build: ./data_storage/
-    ports:
-      - "27017:27017"
+    network_mode: host
 
   gathering_data:
     build: ./Gathering_DATA/
+    network_mode: host
     depends_on:
       - db
 
   display:
     build: ./Display/
-    ports:
-      - "80:80"
+    network_mode: host
     depends_on:
-      - db
+      - api
