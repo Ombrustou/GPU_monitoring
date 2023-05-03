@@ -9,35 +9,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 0,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:100
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -48,35 +48,35 @@ const app = Vue.createApp({
           IP: "192.168.123.124",
           no_response: 1,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",            
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -87,35 +87,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 1554,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -125,35 +125,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 1,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -163,35 +163,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 0,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -201,35 +201,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 0,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -239,35 +239,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 1456468436163465436845487,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -277,35 +277,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 1,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -315,35 +315,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 1,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -353,35 +353,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 1,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -391,35 +391,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 1,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
@@ -429,35 +429,35 @@ const app = Vue.createApp({
           IP: "192.168.123.123",
           no_response: 1,
           GPU: [{
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
             max_capacity:400
           },
           {
-            number: 1,
+            id: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
             temperature: 23,
             usage: 200,
