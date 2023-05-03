@@ -464,7 +464,6 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         }]
-
       }
     },
     methods: {
