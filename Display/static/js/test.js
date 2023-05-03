@@ -4,7 +4,466 @@ const app = Vue.createApp({
     data() {
       return {
         collapsed: true,
-        computerList:[]
+        logs: [],
+        computerList:[{
+          IP: "192.168.123.123",
+          no_response: 0,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:100
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        },
+        {
+          IP: "192.168.123.124",
+          no_response: 1,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",            
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+
+          }]
+        },{
+          IP: "192.168.123.123",
+          no_response: 1554,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        },{
+          IP: "192.168.123.123",
+          no_response: 1,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        },{
+          IP: "192.168.123.123",
+          no_response: 0,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        },{
+          IP: "192.168.123.123",
+          no_response: 0,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        },{
+          IP: "192.168.123.123",
+          no_response: 1456468436163465436845487,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        },{
+          IP: "192.168.123.123",
+          no_response: 1,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        },{
+          IP: "192.168.123.123",
+          no_response: 1,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        },{
+          IP: "192.168.123.123",
+          no_response: 1,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        },{
+          IP: "192.168.123.123",
+          no_response: 1,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        },{
+          IP: "192.168.123.123",
+          no_response: 1,
+          GPU: [{
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          },
+          {
+            id: 1,
+            name: "NVIDIA GeForce GTX 1080 Ti",
+            temperature: 23,
+            usage: 200,
+            max_capacity:400
+          }]
+        }]
       }
     },
     methods: {
@@ -27,7 +486,7 @@ const app = Vue.createApp({
       },
       //Transforms the usage of a GPU into a percentage of usage
       toPercent : function(gpu_usage, gpu_max_capacity){
-          return gpu_usage * 100 / gpu_max_capacity;
+          return Math.round(gpu_usage * 100 / gpu_max_capacity);
       },
 
       getDisconnectedTime: function(nbTicks) {
