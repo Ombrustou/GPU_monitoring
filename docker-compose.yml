@@ -8,6 +8,8 @@ services:
   db:
     build: ./data_storage/
     network_mode: host
+    volumes:
+      - /data:/data/db
 
   gathering_data:
     build: ./Gathering_DATA/
