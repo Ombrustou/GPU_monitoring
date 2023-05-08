@@ -1,5 +1,7 @@
 use monitoring
 
+db.computer.insertMany([{IP:"172.24.198.18",username:"gpuq",password:"data123"},{IP:"172.24.198.19",username:"gpuq",password:"data123"}])
+
 db.createCollection("data", {
     validator: {
         $jsonSchema: {
