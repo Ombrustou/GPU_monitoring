@@ -1,7 +1,10 @@
+//This files has to be executed at the initialisation of the database, as the database stores data in host after doing that once after the build it wills runs forever with all the changes made. 
 use monitoring
 
+//Comment the following line to not insert computers to begin with
 db.computer.insertMany([{IP:"172.24.198.18",username:"gpuq",password:"data123"},{IP:"172.24.198.19",username:"gpuq",password:"data123"}])
 
+//Initialize what should looks like a data document
 db.createCollection("data", {
     validator: {
         $jsonSchema: {
