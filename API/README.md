@@ -32,3 +32,17 @@ with *ip* as the IP of the computer you want to delete. You need to give the IP 
 Finally when your set of computer is done, you can now get some data from the computer you've added.
 To get this data you can use the */monitoring*
 You'll be receiving all the data as a JSON file.
+
+
+## Data to test the API
+
+You can use the following commands to verify if the API is working well.
+
+To add a computer
+> curl -X POST http://localhost:3001/computer -H 'Content-Type: application/json' -d '{"IP":"172.24.198.42","username":"my_username","password":"my_password"}'
+
+To modify a computer
+>curl -X PUT http://localhost:3001/computer/172.24.198.42/192.168.0.100/admin/password123 -H "Content-Type: application/json" -d '{"IP":"192.168.0.100","username":"admin","password":"password123"}' 
+
+To delete a computer
+>curl -X DELETE http://localhost:3001/computer/192.168.0.100 -H 'Content-Type: application/json' -d '{"IP": "192.168.0.100"}'
