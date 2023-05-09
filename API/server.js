@@ -44,6 +44,13 @@ const connectToDatabase = async () => {
       res.send(data);
     });
 
+    app.get('/computer', async (req, res) => {
+      const computerCollection = dbMongo.collection('computer');
+      const data = await computerCollection.find().toArray();
+
+      res.send(data);
+    })
+
     app.post('/monitoring', async (req, res) => {
       const computerCollection = dbMongo.collection('computer');
       try{
@@ -55,6 +62,10 @@ const connectToDatabase = async () => {
         console.log(err);
         res.status(500).send('Error while adding a new computer to the database');
       }
+    })
+
+    app.delete('/computer/:ip', async (req, res) {
+      
     })
 
     // Start the server
