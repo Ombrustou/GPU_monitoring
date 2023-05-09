@@ -107,6 +107,10 @@ body{
 
 }
 
+.card-body.hidden{
+  visibility: hidden;
+}
+
 .name{
   font-size: xx-large;
 }
