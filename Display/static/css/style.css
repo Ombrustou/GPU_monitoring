@@ -67,6 +67,11 @@ body{
     padding-bottom: 1%;
   }
 
+  .list-group-item.sb:hover {
+    background-color: lightgray;
+    opacity: 70%;
+  }
+
   .info{
     padding-top: 1%;
   }
@@ -104,10 +109,16 @@ body{
   width: 5em;
   position: absolute;
   transform: translateX(-50%);
-
 }
 
-.card-body.hidden{
+.delete{
+  bottom: 10%;
+  width: 7em;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.hidden{
   visibility: hidden;
 }
 

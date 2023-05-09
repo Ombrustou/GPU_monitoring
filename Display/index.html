@@ -75,6 +75,8 @@
                     </div>
                     <div class="sidebar-content">
                         <p class="name">TONAME</p>
+                        <input type="number" v-model="computerList[0].GPU[0].temperature">
+                        <input type="number" v-model="computerList[0].GPU[0].usage">
                         <input type="number" v-model="computerList[0].no_response">
                         <div :class="['logs','card-body', {hidden: collapsed}]">
                             <div class="scroll-area-sm" style="height:40em">
@@ -95,12 +97,12 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li class="list-group-item" v-else v-for="log in logs" :key="log.id">
+                                                <li class="list-group-item sb" v-else v-for="log in logs" :key="log.id">
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper ">
                                                             <div class="widget-content-left col-12">
                                                                 <div class="row">
-                                                                    <div class="info col" style="font-size: 0.73em;">
+                                                                    <div class="info col" style="font-size: 0.73em;" @click="delLog(log)">
                                                                         {{log.message}} - {{log.date}} 
                                                                     </div>
                                                                 </div>
@@ -113,7 +115,8 @@
                                     </div>
                                 </perfect-scrollbar>
                             </div>
-                        </div>                        
+                        </div>      
+                        <button :class="['btn', 'btn-primary', 'rounded-pill', 'delete', { collapsed, hidden: collapsed }]" @click="cleanLogs()">Clear logs</button>               
                         <img :class="['aau', { collapsed: collapsed }]" src="static/media/aau.png">
                     </div>
                 </div>              
