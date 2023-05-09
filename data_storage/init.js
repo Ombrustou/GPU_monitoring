@@ -1,6 +1,7 @@
 //This files has to be executed at the initialisation of the database, as the database stores data in host after doing that once after the build it wills runs forever with all the changes made. 
 use monitoring
 
+//Initialize what a computer should looks like
 db.createCollection("computer", {
     validator: {
         $jsonSchema: {
