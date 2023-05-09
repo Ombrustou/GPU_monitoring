@@ -51,7 +51,7 @@ const connectToDatabase = async () => {
       res.send(data);
     })
 
-    app.post('/monitoring', async (req, res) => {
+    app.post('/computer', async (req, res) => {
       const computerCollection = dbMongo.collection('computer');
       try{
         console.log(req.body);
@@ -64,8 +64,20 @@ const connectToDatabase = async () => {
       }
     })
 
-    app.delete('/computer/:ip', async (req, res) {
-      
+    app.delete('/computer/:ip', async (req, res) => {
+      const computerCollection = dbMongo.collection('computer');
+      try{
+        const result = await computerCollection.deleteOne({IP: String(req.params.ip)})
+        console.log(result);
+        if(result.deletedCount===1){
+          res.sendStatus(204)
+        }else{
+          res.sendStatus(404);
+        }
+      }catch (err){
+        console.log(err);
+        res.status(500).send('Error while trying to delete a computer')
+      }
     })
 
     // Start the server
