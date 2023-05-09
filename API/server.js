@@ -44,6 +44,19 @@ const connectToDatabase = async () => {
       res.send(data);
     });
 
+    app.post('/monitoring', async (req, res) => {
+      const computerCollection = dbMongo.collection('computer');
+      try{
+        console.log(req.body);
+        const result = await computerCollection.insertOne(req.body);
+        console.log(result.insertedId);
+        res.send(result)
+      }catch (err){
+        console.log(err);
+        res.status(500).send('Error while adding a new computer to the database');
+      }
+    })
+
     // Start the server
     const port = process.env.PORT || 3001;
     app.listen(port, () => {
