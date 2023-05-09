@@ -4,9 +4,11 @@ const app = Vue.createApp({
     data() {
       return {
         collapsed: true,
+        logIdAvailable:2,
         logs: [],
+
         computerList:[{
-          IP: "192.168.123.123",
+          IP: "192.168.123.124",
           no_response: 0,
           GPU: [{
             number: 1,
@@ -45,7 +47,7 @@ const app = Vue.createApp({
           }]
         },
         {
-          IP: "192.168.123.124",
+          IP: "192.168.123.125",
           no_response: 1,
           GPU: [{
             number: 1,
@@ -84,7 +86,7 @@ const app = Vue.createApp({
 
           }]
         },{
-          IP: "192.168.123.123",
+          IP: "192.168.123.126",
           no_response: 1554,
           GPU: [{
             number: 1,
@@ -122,7 +124,7 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         },{
-          IP: "192.168.123.123",
+          IP: "192.168.123.127",
           no_response: 1,
           GPU: [{
             number: 1,
@@ -160,7 +162,7 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         },{
-          IP: "192.168.123.123",
+          IP: "192.168.123.128",
           no_response: 0,
           GPU: [{
             number: 1,
@@ -198,7 +200,7 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         },{
-          IP: "192.168.123.123",
+          IP: "192.168.123.129",
           no_response: 0,
           GPU: [{
             number: 1,
@@ -236,8 +238,8 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         },{
-          IP: "192.168.123.123",
-          no_response: 1456468436163465436845487,
+          IP: "192.168.123.121",
+          no_response: 3,
           GPU: [{
             number: 1,
             name: "NVIDIA GeForce GTX 1080 Ti",
@@ -274,7 +276,7 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         },{
-          IP: "192.168.123.123",
+          IP: "192.168.123.122",
           no_response: 1,
           GPU: [{
             number: 1,
@@ -312,7 +314,7 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         },{
-          IP: "192.168.123.123",
+          IP: "192.168.123.120",
           no_response: 1,
           GPU: [{
             number: 1,
@@ -350,7 +352,7 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         },{
-          IP: "192.168.123.123",
+          IP: "192.168.123.124",
           no_response: 1,
           GPU: [{
             number: 1,
@@ -388,7 +390,7 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         },{
-          IP: "192.168.123.123",
+          IP: "192.168.123.132",
           no_response: 1,
           GPU: [{
             number: 1,
@@ -426,7 +428,7 @@ const app = Vue.createApp({
             max_capacity:400
           }]
         },{
-          IP: "192.168.123.123",
+          IP: "192.168.123.133",
           no_response: 1,
           GPU: [{
             number: 1,
@@ -536,6 +538,63 @@ const app = Vue.createApp({
       }
     },
 
+
+    watch: {
+
+      clonedComputerList: {
+        handler: function(newVal, oldVal) {         
+          logList = this.logs
+          newVal.forEach(function(computer, index) {
+            //Verification and logging of the connections and disconnections
+            if(computer.no_response !== oldVal[index].no_response){
+              if(parseInt(computer.no_response) == 1){
+                logId = this.logIdAvailable
+                now = new Date()
+                logDate = now.toLocaleDateString()
+                logDate = logDate + " - " + now.toLocaleTimeString()
+                logMessage = computer.IP + " offline"
+                newLog = {id: logId, message:logMessage, date:logDate}
+                logList.unshift(newLog)
+              } else if(parseInt(computer.no_response) == 0){
+                logId = this.logIdAvailable
+                now = new Date()
+                logDate = now.toLocaleDateString()
+                logDate = logDate + " - " + now.toLocaleTimeString()
+                logMessage = computer.IP + " online"
+                newLog = {id: logId, message:logMessage, date:logDate}
+                logList.unshift(newLog)
+              }
+            }
+           //console.log(newVal, oldVal)
+            //console.log(newVal[index].no_response)
+            //console.log("La valeur de no_response pour l'ordinateur ", index, "a été modifiée :", computer.no_response);
+          });
+        },
+        deep: true
+      },
+
+      /**
+       * Each time the list of log is updated, its size is calculated.
+       * The size is stored in the logIdAvailable variable to be used as the next id
+       * As the ids start at 0, the size always happen to be an available id
+       * Ex: size = 2 means there is an element 0 and an element 1, so, an element 2 is available.
+       * If the id is already taken due to past deletions, the new id will be the value of the last one + 1
+       */
+      logs(){
+        logIdAvailable = Object.keys(this.logs).length
+        if(this.logs[logIdAvailable-1] != null){
+          logIdAvailable = this.logs[logIdAvailable-1] +1
+        }
+      }
+    },
+
+    computed:{
+      //Allows to log the changes the previous state of the list to then be able to use the watcher
+      clonedComputerList: function(){
+         return JSON.parse(JSON.stringify(this.computerList))
+      }
+    },
+
     /**
      * This mounted() function is called whenever the application is mounted
      * Define an interval in which the informations will be gathered.
@@ -546,7 +605,7 @@ const app = Vue.createApp({
       console.log('App Mounted');
       setInterval(() => {
         this.gather();
-      }, 300000);
+      }, 3000000);
   }
   });
   

@@ -8,7 +8,6 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-        <script src="static/js/script.js"></script>
         <link rel="stylesheet" href="static/css/style.css">
     </head>
     <body>
@@ -71,10 +70,50 @@
             <sidebar>
                 <div :class="['sidebar', 'sidebar-right', { collapsed: collapsed }]">
                     <div class="sidebar-header" @click="toggle">
-                        <img class="notif" src="static/media/notif.png">
+                        <img class="notif" v-if="logs[0] == null"src="static/media/notif.png">
+                        <img class="notif" v-else src="static/media/notif_alert.png">
                     </div>
                     <div class="sidebar-content">
                         <p class="name">TONAME</p>
+                        <input type="number" v-model="computerList[0].no_response">
+                        <div :class="['logs','card-body', {hidden: collapsed}]">
+                            <div class="scroll-area-sm" style="height:40em">
+                                <perfect-scrollbar class="ps-show-limits">
+                                    <div style="position: static;" class="ps ps--active-y">
+                                        <div class="ps-content">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item" v-if="logs[0] == null">
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper ">
+                                                            <div class="widget-content-left col-12">
+                                                                <div class="row">
+                                                                    <div class="info col">
+                                                                        No new logs 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item" v-else v-for="log in logs" :key="log.id">
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper ">
+                                                            <div class="widget-content-left col-12">
+                                                                <div class="row">
+                                                                    <div class="info col" style="font-size: 0.73em;">
+                                                                        {{log.message}} - {{log.date}} 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </perfect-scrollbar>
+                            </div>
+                        </div>                        
                         <img :class="['aau', { collapsed: collapsed }]" src="static/media/aau.png">
                     </div>
                 </div>              
@@ -83,5 +122,5 @@
     </body>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script type="text/javascript" src="static/js/test.js"></script>
+    <script type="text/javascript" src="static/js/script.js"></script>
 </html>
