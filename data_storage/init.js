@@ -1,6 +1,29 @@
 //This files has to be executed at the initialisation of the database, as the database stores data in host after doing that once after the build it wills runs forever with all the changes made. 
 use monitoring
 
+db.createCollection("computer", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["IP","username","password"],
+            properties: {
+                IP: {
+                    bsonType: "string",
+                    description: "The IP must be a string"
+                },
+                username: {
+                    bsonType: "string",
+                    description: "The username must be a string"
+                },
+                password: {
+                    bsonType: "string",
+                    description: "The password must be a string"
+                }
+            }
+        }
+    }
+})
+
 //Comment the following line to not insert computers to begin with
 db.computer.insertMany([{IP:"172.24.198.18",username:"gpuq",password:"data123"},{IP:"172.24.198.19",username:"gpuq",password:"data123"}])
 
