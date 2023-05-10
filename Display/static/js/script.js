@@ -1,23 +1,6 @@
 
 const app = Vue.createApp({
 
-<<<<<<< HEAD
-  data() {
-    return {
-      collapsed: true,
-      logIdAvailable:2,
-      logs: [],
-
-      computerList:[{
-        IP: "192.168.123.124",
-        no_response: 0,
-        GPU: [{
-          number: 1,
-          name: "NVIDIA GeForce GTX 1080 Ti",
-          temperature: 23,
-          usage: 200,
-          max_capacity:100
-=======
     data() {
       return {
         collapsed: true,
@@ -70,7 +53,6 @@ const app = Vue.createApp({
             usage: 200,
             max_capacity:400
           }]
->>>>>>> 1dacaf53044b1eac7d293d7e760addb1754d8dcd
         },
         {
           number: 1,
@@ -625,9 +607,6 @@ const app = Vue.createApp({
           //console.log("La valeur de no_response pour l'ordinateur ", index, "a été modifiée :", computer.no_response);
         });
       },
-<<<<<<< HEAD
-      deep: true
-=======
       //Transforms the usage of a GPU into a percentage of usage
       toPercent : function(gpu_usage, gpu_max_capacity){
           return Math.round(gpu_usage * 100 / gpu_max_capacity);
@@ -816,7 +795,6 @@ const app = Vue.createApp({
       clonedComputerList: function(){
          return JSON.parse(JSON.stringify(this.computerList))
       }
->>>>>>> 1dacaf53044b1eac7d293d7e760addb1754d8dcd
     },
 
     /**
@@ -826,43 +804,11 @@ const app = Vue.createApp({
      * Ex: size = 2 means there is an element 0 and an element 1, so, an element 2 is available.
      * If the id is already taken due to past deletions, the new id will be the value of the last one + 1
      */
-<<<<<<< HEAD
-    logs(){
-      logIdAvailable = Object.keys(this.logs).length
-      if(this.logs[logIdAvailable-1] != null){
-        logIdAvailable = this.logs[logIdAvailable-1] +1
-      }
-    }
-  },
-
-  computed:{
-    //Allows to log the changes the previous state of the list to then be able to use the watcher
-    clonedComputerList: function(){
-       return JSON.parse(JSON.stringify(this.computerList))
-    }
-  },
-
-  /**
-   * This mounted() function is called whenever the application is mounted
-   * Define an interval in which the informations will be gathered.
-   * 1000 -> 1second
-   * Set by default to 300000 -> 5minutes
-   */
-  mounted(){
-    console.log('App Mounted');
-    setInterval(() => {
-      this.gather();
-    }, 3000000);
-}
-});
-
-app.mount('.app');
-=======
     mounted(){
       console.log('App Mounted');
       setInterval(() => {
         this.gather();
-      }, 3000000);
+      }, 1000);
 
       setInterval(() => {
         this.autoScroll();
@@ -874,4 +820,3 @@ app.mount('.app');
   
   app.mount('.app');
   
->>>>>>> 1dacaf53044b1eac7d293d7e760addb1754d8dcd
