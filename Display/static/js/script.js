@@ -7,7 +7,14 @@ const app = Vue.createApp({
         logIdAvailable:2,
         logs: [],
         overheating: [],
+        scrollDown: true,
         overused: [],
+        selectedComputer: {},
+        newComputer: {
+          IP: "",
+          username: "",
+          password: ""
+        },
         computerList:[{
           IP: "192.168.123.124",
           no_response: 0,
@@ -540,7 +547,76 @@ const app = Vue.createApp({
         } else {
           return GREEN
         }
+      },
+
+      autoScroll: function() {
+        
+        scrollables = document.getElementsByClassName("autoScroll")
+        sDown = this
+
+
+        scrollables.forEach(function(scrollable){
+          if (scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight) {
+            sDown.autoScrollUp(scrollable)
+          } else if (scrollable.scrollTop == 0){
+            sDown.autoScrollDown(scrollable)
+          }
+        })
+      },
+
+      autoScrollDown: function (element) {
+        var start = element.scrollTop;
+        var end = element.scrollHeight - element.clientHeight;
+        var duration = 5000; // Duration of the animation in milliseconds
+        var startTime = null;
+        test = this
+      
+        function scrollAnimation(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = timestamp - startTime;
+          var scroll = test.easeInOutSlow(progress, start, end - start, duration);
+          element.scrollTop = scroll;
+          if (progress < duration) {
+            requestAnimationFrame(scrollAnimation);
+          }
+        }
+      
+        requestAnimationFrame(scrollAnimation);
+      },
+      
+      // Easing function for smooth animation with slower speed
+      easeInOutSlow: function (t, b, c, d) {
+        return c * t / d + b;
+      },
+
+      autoScrollUp: function(element)  {
+        var start = element.scrollTop;
+        var end = 0;
+        var duration = 100; // Duration of the animation in milliseconds
+        var startTime = null;
+        test = this
+      
+        function scrollAnimation(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = timestamp - startTime;
+          var scroll = test.easeInOutSlow(progress, start, end - start, duration);
+          element.scrollTop = scroll;
+          if (progress < duration) {
+            requestAnimationFrame(scrollAnimation);
+          }
+        }
+      
+        requestAnimationFrame(scrollAnimation);
+      },
+
+      addComputer: function(){
+        axios.post("http://localhost:3001/computer", this.newComputer)
+      },
+
+      deleteComputer: function() {
+        axios.delete("http://localhost:3001/computer", this.selectedComputer)
       }
+      
     },
 
 
@@ -619,6 +695,12 @@ const app = Vue.createApp({
       setInterval(() => {
         this.gather();
       }, 3000000);
+
+      setInterval(() => {
+        this.autoScroll();
+      }, 400);
+
+  
   }
   });
   
