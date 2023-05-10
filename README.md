@@ -40,7 +40,7 @@ To get started with AURORA, please follow the instructions provided in the READM
 
 ## Contributors
 
-AURORA - GPU Monitoring is developed by the dedicated team of interns mentored by Mark Philip Philipsen at the VAPLAB of Aalborg University.
+AURORA - GPU Monitoring is developed by the dedicated team of interns mentored by ([Mark Philip Philipsen](https://github.com/markpp)) at the VAPLAB of Aalborg University.
 
 ### Interns:
 
