@@ -1,7 +1,7 @@
 # GPU Monitoring - AURORA (Automated Utility for Real Time Observation and Reporting of Activity)
 
 <p align="center">
-  <img src="vapLogo.png" alt="vaplab Logo">
+  <img src="vapLogo.png" alt="vaplab Logo" style="display:block; margin:auto;">
 </p>
 
 This repository contains the development of a GPU monitoring tool called AURORA (Automated Utility for Real Time Observation and Reporting of Activity) for the VAPLAB (Visualization and Performance Laboratory) at Aalborg University.
