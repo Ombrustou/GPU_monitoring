@@ -177,14 +177,14 @@ body{
 .increased {
   animation: increaseFont 0.2s;
   animation-fill-mode: forwards;
-  letter-spacing: 0.5em;
+  letter-spacing: 2vw;
 
 }
 
 .decreased {
   animation: decreaseFont 0.2s;
   animation-fill-mode: forwards;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.2vw;
 
 }
 
