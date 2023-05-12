@@ -70,7 +70,7 @@ Now Aurora should be running and the UI should be accessible in your navigator [
 
 To get started with GPU monitoring-AURORA using Docker, follow these steps:
 
-- Make sure you have Docker installed on your machine. If not, please refer to the Docker documentation for instructions on how to install it.
+- Make sure you have Docker installed on your machine. If not, please refer to the [Docker documentation](https://docs.docker.com) for instructions on how to install it.
 
 - Clone the GPU Monitoring repository to your local machine:
 
