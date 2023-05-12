@@ -44,7 +44,7 @@ To get started with GPU monitoring-AURORA using Docker-Compose, follow these ste
 - Clone the GPU Monitoring repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/GPU_monitoring.git
+git clone https://github.com/Ombrustou/GPU_monitoring.git
 ```
 - Navigate to the root directory of the repository:
 
