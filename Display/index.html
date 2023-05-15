@@ -132,9 +132,6 @@
                     </div>
                     <div class="sidebar-content">
                         <p id="name" :class="[{increased : collapsed}, {decreased : !collapsed}]">AURORA</p>
-                        <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].temperature">
-                        <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].usage">
-                        <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].no_response">
                         <div :class="['logs','card-body', {hidden: collapsed}]">
                             <div class="scroll-area-sm" style="height:40em">
                                 <perfect-scrollbar class="ps-show-limits">
