@@ -54,7 +54,7 @@ docker build -t api .
 **/!\ Before running the data gathering Docker container, make sure that the data_storing Docker container is already running. The data_storing container is responsible for storing the collected data. Ensure that you have followed the instructions in the DATA_Storing folder of this repository to set up and run the data_storing container.**
 
 ```bash
-docker run -d --name api-container --link data-storage-container -p 3001:3001 api
+docker run -d --name api-container --network=host api
 ```
 
 The api container will be running and accessible on port 3001. It is linked to the data-storage-container to ensure access to the data storage.

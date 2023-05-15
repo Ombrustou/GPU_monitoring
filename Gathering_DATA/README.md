@@ -37,7 +37,7 @@ docker build -t data-gathering .
 **/!\ Before running the data gathering Docker container, make sure that the data_storing Docker container is already running. The data_storing container is responsible for storing the collected data. Ensure that you have followed the instructions in the DATA_Storing folder of this repository to set up and run the data_storing container.**
 
 ```bash
-docker run -d --name data-gathering-container --network host data-gathering
+docker run -d --name data-gathering-container --network=host data-gathering
 ```
 
 The data_gathering container will be running using the host network, allowing access to the data storage and remote computers.
