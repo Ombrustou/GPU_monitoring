@@ -614,7 +614,7 @@ const app = Vue.createApp({
     },
 
     deleteComputer: function() {
-      axios.delete("http://localhost:3001/computer", this.selectedComputer)
+      axios.delete("http://localhost:3001/computer/"+this.selectedComputer.IP)
     }
     
   },
