@@ -694,7 +694,7 @@ const app = Vue.createApp({
     console.log('App Mounted');
     setInterval(() => {
       this.gather();
-    }, 1000);
+    }, 3000000);
 
     setInterval(() => {
       this.autoScroll();
