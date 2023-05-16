@@ -30,7 +30,7 @@ db.createCollection("data", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["IP","no_response","GPU"],
+            required: ["IP","no_response","history"],
             properties: {
                 IP: {
                     bsonType: "string",
@@ -40,38 +40,48 @@ db.createCollection("data", {
                     bsonType: "int",
                     description: "It must be an integer"
                 },
-                GPU: {
-                    bsonType: "array",
-                    items: {
-                        bsonType: "object",
-                        required: ["number", "name", "temperature", "usage", "max_capacity"],
-                        properties: {
-                            number:{
-                                bsonType: "int",
-                                minimum: 0,
-                                description: "The number of the GPU need to be an Integer and need to be higher than 0"
-                            },
-                            name: {
-                                bsonType: "string",
-                                description: "The name of the GPU need to be a string"
-                            },
-                            temperature: {
-                                bsonType: "double",
-                                description: "The temperature of the GPU need to be a double"
-                            },
-                            usage: {
-                                bsonType: "double",
-                                minimum: 0,
-                                description: "the usage of the GPU need to be a double and need to be higher than 0"
-                            },
-                            max_capacity: {
-                                bsonType: "double",
-                                minimum: 0,
-                                description: "The maximum capacity of the GPU need to be a double and need to be higher than 0"
+                history:{
+                    bsonType: "object",
+                    required: ["timestamp","GPU"],
+                    properties:{
+                        timestamp:{
+                            bsonType: "int",
+                            description: "The timestamp must be an integer"
+                        },
+                        GPU: {
+                            bsonType: "array",
+                            items: {
+                                bsonType: "object",
+                                required: ["number", "name", "temperature", "usage", "max_capacity"],
+                                properties: {
+                                    number:{
+                                        bsonType: "int",
+                                        minimum: 0,
+                                        description: "The number of the GPU need to be an Integer and need to be higher than 0"
+                                    },
+                                    name: {
+                                        bsonType: "string",
+                                        description: "The name of the GPU need to be a string"
+                                    },
+                                    temperature: {
+                                        bsonType: "int",
+                                        description: "The temperature of the GPU need to be a double"
+                                    },
+                                    memory_usage: {
+                                        bsonType: "int",
+                                        minimum: 0,
+                                        description: "the usage of the memory need to be an int and need to be higher than 0"
+                                    },
+                                    gpu_usage: {
+                                        bsonType: "int",
+                                        minimum: 0,
+                                        description: "The usage of the GPU need to be an int and need to be higher than 0"
+                                    }
+                                }
                             }
                         }
                     }
-                }
+                } 
             }
         }
     }
