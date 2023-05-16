@@ -13,7 +13,6 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-        <!-- MDB -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
 
 
@@ -25,12 +24,13 @@
     <body>
         <div class="app">
             <div class="row">
-                <div class="flex-container">
-                    <div :class="['card', 'my-3', 'ms-2', {connected: computer.no_response >= 1}]" v-for="computer in computerList" :key="computer.IP">
-                        <div class="card-header" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = computer">
+                <div class="flex-container main">
+                    <div :class="['card', 'computer', 'my-3', 'ms-2', {connected: computer.no_response >= 1}]" v-for="(computer, index) in computerList" :key="computer.IP">
+                        <div class="card-header" @click="goToSlide(index)">
                             <div class="row">
-                                <img class="connectedIcon" src="static/media/wifi.png">
+                                <img :class="['connectedIcon', {hidden: index != this.activeIndex}]" src="static/media/wifi.png">
                                 <h5 class="card-title text-center">{{computer.IP}}</h5>
+                                <h8 class="card-subtitle text-center">computer.dateOnline</h8>
                             </div>
                         </div>
                         <div class="card-body">
@@ -73,6 +73,29 @@
                                         </div>  
                                     </div>
                                 </perfect-scrollbar>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="detail" class="card ms-2">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div v-for="(item, index) in computerList" :key="index" :class="{'carousel-item': true, active: index === activeIndex}">
+                                    <div class="flex-container details">
+                                        <div class="col details infos">
+                                            <h5>{{ item.IP }}</h5>
+                                            <button class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = this.computerList[index]">
+                                        </div>
+                                        <div class="col details history">
+                                            <h5>History</h5>
+                                        </div>
+                                        <div class="col details direct">
+                                            <h5>Live Overview</h5>
+                                        </div>
+                                        <div class="col details cctv">
+                                            <h5>Picture</h5>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -132,9 +155,11 @@
                     </div>
                     <div class="sidebar-content">
                         <p id="name" :class="[{increased : collapsed}, {decreased : !collapsed}]">AURORA</p>
+                        <!--
                         <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].temperature">
                         <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].usage">
                         <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].no_response">
+                        -->
                         <div :class="['logs','card-body', {hidden: collapsed}]">
                             <div class="scroll-area-sm" style="height:40em">
                                 <perfect-scrollbar class="ps-show-limits">

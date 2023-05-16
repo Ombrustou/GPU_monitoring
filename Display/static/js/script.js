@@ -10,6 +10,26 @@ const app = Vue.createApp({
         scrollDown: true,
         overused: [],
         selectedComputer: {},
+        autoChangeInterval: null,
+        userSelectionTimeout: null,
+        activeIndex: 0,
+        carouselItems: [
+          {
+            image: "/static/media/aau.png",
+            title: "Item 1",
+            description: "Description for Item 1",
+          },
+          {
+            image: "/static/media/aau.png",
+            title: "Item 2",
+            description: "Description for Item 2",
+          },
+          {
+            image: "/static/media/aau.png",
+            title: "Item 3",
+            description: "Description for Item 3",
+          },
+        ],
         newComputer: {
           IP: "",
           username: "",
@@ -608,14 +628,34 @@ const app = Vue.createApp({
       
         requestAnimationFrame(scrollAnimation);
       },
-
       addComputer: function(){
         axios.post("http://localhost:3001/computer", this.newComputer)
       },
-
       deleteComputer: function() {
         axios.delete("http://localhost:3001/computer", this.selectedComputer)
-      }
+      },
+      nextSlide: function() {
+        this.activeIndex = (this.activeIndex + 1) % this.carouselItems.length;
+      },
+      goToSlide: function(index) {
+        this.activeIndex = index;
+        this.stopAutoChange();
+      },
+      startAutoChange: function() {
+        this.autoChangeInterval = setInterval(() => {
+          if (!this.userSelectionTimeout) {
+            this.nextSlide();
+          }
+        }, 5000);
+      },
+      stopAutoChange: function () {
+        clearInterval(this.autoChangeInterval);
+        this.autoChangeInterval = null;
+        this.userSelectionTimeout = setTimeout(() => {
+          this.startAutoChange();
+          this.userSelectionTimeout = null;
+        }, 300000); // 5 minutes in milliseconds
+      },
       
     },
 
@@ -700,9 +740,8 @@ const app = Vue.createApp({
         this.autoScroll();
       }, 400);
 
-  
+      this.startAutoChange();
   }
   });
   
   app.mount('.app');
-  
