@@ -30,14 +30,18 @@ db.createCollection("data", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["IP","history"],
+            required: ["IP","history","last_reboot"],
             properties: {
                 IP: {
                     bsonType: "string",
                     description: "The IP need to be a string"
                 },
+                last_reboot:{
+                    bsonType: "string",
+                    description: "The last_reboot must be a string"
+                },
                 history:{
-                    bsonType: "object",
+                    bsonType: "array",
                     required: ["timestamp","GPU"],
                     properties:{
                         timestamp:{

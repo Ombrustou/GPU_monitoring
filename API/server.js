@@ -38,11 +38,26 @@ const connectToDatabase = async () => {
 
 
     // Define MongoDB ways
-    app.get('/monitoring', async (req, res) => {
-      const data = await collectionMongo.find().toArray();
-
+    app.get('/monitoring/:ip', async (req, res) => {
+      const data = await collectionMongo.findOne({IP: (req.params.ip)}).toArray();
       res.send(data);
     });
+
+    app.get('/last', async (req, res) => {
+      const data = await collectionMongo.find().toArray();
+    
+      // Transform the JSON by replacing the "history" array with the last GPU array
+      const newData = data.map(item => {
+        const lastGPUArray = item.history[item.history.length - 1].GPU;
+        return {
+          ...item,
+          history: lastGPUArray
+        };
+      });
+    
+      res.json(newData);
+    });
+    
 
     app.get('/computer', async (req, res) => {
       const computerCollection = dbMongo.collection('computer');
