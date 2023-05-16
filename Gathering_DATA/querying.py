@@ -43,7 +43,7 @@ while True:
             output = stdout.read().decode()
 
             # test of a typical output 
-            output = "GPU-3583dcda-fdae-b3a4-48c7-86d9064108aa\ngpuq 19726 121 53.6 1:53"
+            # output = "GPU-3583dcda-fdae-b3a4-48c7-86d9064108aa\ngpuq 19726 121 53.6 1:53"
 
             lines = output.split("\n")
             process = {}
