@@ -4,10 +4,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>GPU Monitoring</title>
+        
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet"/>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script> 
+
+
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+        <!-- MDB -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+
+
+
+
+
         <link rel="stylesheet" href="static/css/style.css">
     </head>
     <body>
@@ -15,14 +27,14 @@
             <div class="row">
                 <div class="flex-container">
                     <div :class="['card', 'my-3', 'ms-2', {connected: computer.no_response >= 1}]" v-for="computer in computerList" :key="computer.IP">
-                        <div class="card-header">
+                        <div class="card-header" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = computer">
                             <div class="row">
                                 <img class="connectedIcon" src="static/media/wifi.png">
                                 <h5 class="card-title text-center">{{computer.IP}}</h5>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="scroll-area-sm">
+                            <div class="scroll-area-sm autoScroll">
                                 <perfect-scrollbar class="ps-show-limits">
                                     <div style="position: static;" class="ps ps--active-y">
                                         <div class="ps-content">
@@ -66,7 +78,52 @@
                     </div>
                 </div>
             </div>
-
+            <div class="modal fade" id="formModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New computer</h5>
+                        <button class="btn-close" data-mdb-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                        <form>
+                            <div class="col">
+                            <div class="col mb-4">
+                                IP address:
+                                <input name="address" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.IP">
+                            </div>
+                            <div class="col mb-4">
+                                Username:
+                                <input name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.username">
+                            </div>
+                            <div class="col mb-4">
+                                Password:
+                                <input type="password" name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.password">
+                            </div>
+                            </div>          
+                        </form>         
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                            <button class="btn btn-primary danger" @click.prevent="addComputer" data-mdb-dismiss="modal">Add computer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="deleteModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{selectedComputer.IP}} will be deleted. Confirm ?</h5>
+                        <button class="btn-close" data-mdb-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-mdb-dismiss="modal">Cancel</button>
+                            <button class="btn btn-danger btn-primary" @click="deleteComputer" data-mdb-dismiss="modal">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <sidebar>
                 <div :class="['sidebar', 'sidebar-right', { collapsed: collapsed }]">
                     <div class="sidebar-header" @click="toggle">
@@ -74,8 +131,7 @@
                         <img class="notif" v-else src="static/media/notif_alert.png">
                     </div>
                     <div class="sidebar-content">
-                        <p class="name">TONAME</p>
-                        <input type="number" v-model="computerList[0].no_response">
+                        <p id="name" :class="[{increased : collapsed}, {decreased : !collapsed}]">AURORA</p>
                         <div :class="['logs','card-body', {hidden: collapsed}]">
                             <div class="scroll-area-sm" style="height:40em">
                                 <perfect-scrollbar class="ps-show-limits">
@@ -95,12 +151,12 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li class="list-group-item" v-else v-for="log in logs" :key="log.id">
+                                                <li class="list-group-item sb" v-else v-for="log in logs" :key="log.id">
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper ">
                                                             <div class="widget-content-left col-12">
                                                                 <div class="row">
-                                                                    <div class="info col" style="font-size: 0.73em;">
+                                                                    <div class="info col" style="font-size: 0.73em;" @click="delLog(log)">
                                                                         {{log.message}} - {{log.date}} 
                                                                     </div>
                                                                 </div>
@@ -113,7 +169,9 @@
                                     </div>
                                 </perfect-scrollbar>
                             </div>
-                        </div>                        
+                        </div>                  
+                        <button :class="['btn', 'btn-primary', 'delete', { collapsed, hidden: collapsed }]" @click="cleanLogs()">Clear logs</button>               
+                        <button :class="['btn', 'btn-primary', 'addPc', { hidden: collapsed }]" data-mdb-toggle="modal" data-mdb-target="#formModal">Add computer</button>   
                         <img :class="['aau', { collapsed: collapsed }]" src="static/media/aau.png">
                     </div>
                 </div>              

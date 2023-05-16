@@ -25,9 +25,6 @@ db.createCollection("computer", {
     }
 })
 
-//Comment the following line to not insert computers to begin with
-db.computer.insertMany([{IP:"172.24.198.18",username:"gpuq",password:"data123"},{IP:"172.24.198.19",username:"gpuq",password:"data123"}])
-
 //Initialize what should looks like a data document
 db.createCollection("data", {
     validator: {

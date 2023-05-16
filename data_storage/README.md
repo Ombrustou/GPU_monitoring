@@ -2,13 +2,28 @@
 
 This repository is in charge of the creation of the database for the GPU_Monitoring
 
-init.js if a file to execute to initialize the database before it first utilisation, or after erasing it.
+init.js is a file to execute to initialize the database before it first utilization, or after erasing it.
 
-So after building and running the docker that makes run the database, you have to connect to the database with a mongosh client and execute a the init.js file.
+## Getting Started with Docker
 
-Command line (from the root of the docker):
+To get started with data_storage part of GPU monitoring-AURORA, follow these steps:
 
-mongosh < data_storage/init.js
+- Navigate to data_storage folder:
 
-If you want to start without any computer you can delete or comment the line starting by db.computer.insertMany
+```bash
+cd data_storage
+```
 
+- Build the Docker image:
+
+```shell
+docker build -t data-storage .
+```
+
+- Run the data_storage container:
+
+```bash
+docker run -d --name data-storage-container -v /path/to/shared/folder:/data/db --network=host data-storage
+```
+
+The data_storage container will be running and accessible on port 2707. Make sure to replace /path/to/shared/folder with the actual path to the shared folder on your host machine.

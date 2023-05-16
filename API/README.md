@@ -33,6 +33,31 @@ Finally when your set of computer is done, you can now get some data from the co
 To get this data you can use the */monitoring*
 You'll be receiving all the data as a JSON file.
 
+## Getting Started with Docker
+
+To get started with API part of GPU monitoring-AURORA, follow these steps:
+
+- Navigate to API folder:
+
+```bash
+cd API
+```
+
+- Build the Docker image:
+
+```shell
+docker build -t api .
+```
+
+- Run the API container, linking it to the data_storage container:
+
+**/!\ Before running the data gathering Docker container, make sure that the data_storing Docker container is already running. The data_storing container is responsible for storing the collected data. Ensure that you have followed the instructions in the DATA_Storing folder of this repository to set up and run the data_storing container.**
+
+```bash
+docker run -d --name api-container --network=host api
+```
+
+The api container will be running and accessible on port 3001. It is linked to the data-storage-container to ensure access to the data storage.
 
 ## Data to test the API
 
