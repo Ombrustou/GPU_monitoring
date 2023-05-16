@@ -30,15 +30,11 @@ db.createCollection("data", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["IP","no_response","history"],
+            required: ["IP","history"],
             properties: {
                 IP: {
                     bsonType: "string",
                     description: "The IP need to be a string"
-                },
-                no_response:{
-                    bsonType: "int",
-                    description: "It must be an integer"
                 },
                 history:{
                     bsonType: "object",
