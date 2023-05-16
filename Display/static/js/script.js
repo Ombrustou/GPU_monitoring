@@ -632,7 +632,7 @@ const app = Vue.createApp({
         axios.post("http://localhost:3001/computer", this.newComputer)
       },
       deleteComputer: function() {
-        axios.delete("http://localhost:3001/computer", this.selectedComputer)
+        axios.delete("http://localhost:3001/computer"+ this.selectedComputer)
       },
       nextSlide: function() {
         this.activeIndex = (this.activeIndex + 1) % this.carouselItems.length;
@@ -655,8 +655,7 @@ const app = Vue.createApp({
           this.startAutoChange();
           this.userSelectionTimeout = null;
         }, 300000); // 5 minutes in milliseconds
-      },
-      
+      },      
     },
 
 
