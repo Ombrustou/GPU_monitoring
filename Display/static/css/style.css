@@ -59,9 +59,9 @@ body{
 
   .card-subtitle{
     font-size: 1em;
-    width: 80%;
+    width: 90%;
     margin-top: -1em;
-    padding-left: 25%;
+    padding-left: 15%;
   }
 
   .card-header:hover{
@@ -214,8 +214,11 @@ body{
   margin-left: 0.5vw;
   margin-right: 0.5vw;
   margin-bottom: 1vh;
+  height: 17em;
+  background-color: aqua;
+
 }
 
-.col.details.infos, .col.details.history, .col.details.direct, .col.details.cctv {
-  background-color: aqua;
+.deleteButton, .modifyButton{
+  font-size: x-small;
 }

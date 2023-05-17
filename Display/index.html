@@ -30,7 +30,7 @@
                             <div class="row">
                                 <img :class="['connectedIcon', {hidden: index != this.activeIndex}]" src="static/media/wifi.png">
                                 <h5 class="card-title text-center">{{computer.IP}}</h5>
-                                <h8 class="card-subtitle text-center">computer.dateOnline</h8>
+                                <h8 class="card-subtitle text-center">Last reboot: {{computer.last_reboot}}</h8>
                             </div>
                         </div>
                         <div class="card-body">
@@ -45,11 +45,10 @@
                                                             <div class="widget-content-left col-12">
                                                                 <div class="row">
                                                                     <div class="col-1">
-                                                                        <img :src="status(gpu.temperature, gpu.usage, gpu.max_capacity)" class="status-led">
+                                                                        <img :src="status(gpu.temperature, gpu.gpu_usage, gpu.memory_usage)" class="status-led">
                                                                     </div>
                                                                     <div class="info col">
-                                                                        <!--To save some space within the card, i cut off the "NVIDIA" display with the slice() function--> 
-                                                                        {{gpu.number}} - {{gpu.name.slice(7)}} - {{gpu.temperature}}°C - {{toPercent(gpu.usage, gpu.max_capacity)}}% 
+                                                                        {{gpu.number}} - {{gpu.temperature}}°C - Memory: {{gpu.memory_usage}}% - Usage: {{gpu.gpu_usage}}%
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -82,8 +81,17 @@
                                 <div v-for="(item, index) in computerList" :key="index" :class="{'carousel-item': true, active: index === activeIndex}">
                                     <div class="flex-container details">
                                         <div class="col details infos">
-                                            <h5>{{ item.IP }}</h5>
-                                            <button class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = this.computerList[index]">
+                                            <div class="details infos header flex-container">
+                                                <div class="col-8">
+                                                    <h5>{{ item.IP }}</h5>
+                                                </div>
+                                                <div class="col-2">
+                                                    <button class="btn btn-primary modifyButton" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = this.computerList[index]">Modify</button>
+                                                </div>
+                                                <div class="col">
+                                                    <button class="btn btn-primary deleteButton" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = this.computerList[index]">Delete</button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col details history">
                                             <h5>History</h5>
@@ -155,11 +163,14 @@
                     </div>
                     <div class="sidebar-content">
                         <p id="name" :class="[{increased : collapsed}, {decreased : !collapsed}]">AURORA</p>
-                        <!--
+
+
                         <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].temperature">
-                        <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].usage">
+                        <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].gpu_usage">
+                        <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].memory_usage">
                         <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].no_response">
-                        -->
+
+
                         <div :class="['logs','card-body', {hidden: collapsed}]">
                             <div class="scroll-area-sm" style="height:40em">
                                 <perfect-scrollbar class="ps-show-limits">
