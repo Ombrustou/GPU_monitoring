@@ -14,23 +14,6 @@ const app = Vue.createApp({
         autoChangeInterval: null,
         userSelectionTimeout: null,
         activeIndex: 0,
-        carouselItems: [
-          {
-            image: "/static/media/aau.png",
-            title: "Item 1",
-            description: "Description for Item 1",
-          },
-          {
-            image: "/static/media/aau.png",
-            title: "Item 2",
-            description: "Description for Item 2",
-          },
-          {
-            image: "/static/media/aau.png",
-            title: "Item 3",
-            description: "Description for Item 3",
-          },
-        ],
         newComputer: {
           IP: "",
           username: "",
@@ -38,7 +21,7 @@ const app = Vue.createApp({
         },
         computerList:[{
           IP: "192.168.123.124",
-          no_response: 0,
+          lastResponse: 0,
           last_reboot: 'May  2 16:15 2023',
           GPU: [{
             number: 1,
@@ -50,7 +33,7 @@ const app = Vue.createApp({
         },
         {
           IP: "192.168.123.125",
-          no_response: 1,
+          lastResponse: 65,
           last_reboot: 'May  2 16:15 2023',
               GPU: [{
             number: 1,
@@ -90,7 +73,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.126",
-          no_response: 1554,
+          lastResponse: 1554,
           last_reboot: 'May  2 16:15 2023',
           GPU: [{
             number: 1,
@@ -129,7 +112,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.127",
-          no_response: 0,
+          lastResponse: 0,
           last_reboot: 'May  2 16:15 2023',
               GPU: [{
             number: 1,
@@ -168,7 +151,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.128",
-          no_response: 0,
+          lastResponse: 0,
           last_reboot: 'May  2 16:15 2023',
           GPU: [{
             number: 1,
@@ -207,7 +190,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.129",
-          no_response: 0,
+          lastResponse: 0,
           last_reboot: 'May  2 16:15 2023',
           GPU: [{
             number: 1,
@@ -246,7 +229,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.121",
-          no_response: 3,
+          lastResponse: 3,
           last_reboot: 'May  2 16:15 2023',
           GPU: [{
             number: 1,
@@ -285,7 +268,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.122",
-          no_response: 0,
+          lastResponse: 0,
           last_reboot: 'May  2 16:15 2023',
               GPU: [{
             number: 1,
@@ -324,7 +307,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.120",
-          no_response: 0,
+          lastResponse: 0,
           last_reboot: 'May  2 16:15 2023',
               GPU: [{
             number: 1,
@@ -363,7 +346,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.124",
-          no_response: 0,
+          lastResponse: 0,
           last_reboot: 'May  2 16:15 2023',
               GPU: [{
             number: 1,
@@ -402,7 +385,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.132",
-          no_response: 0,
+          lastResponse: 0,
           last_reboot: 'May  2 16:15 2023',
               GPU: [{
             number: 1,
@@ -441,7 +424,7 @@ const app = Vue.createApp({
           }]
         },{
           IP: "192.168.123.133",
-          no_response: 0,
+          lastResponse: 0,
           last_reboot: 'May  2 16:15 2023',
               GPU: [{
             number: 1,
@@ -487,9 +470,9 @@ const app = Vue.createApp({
         this.collapsed = !this.collapsed;
       }, 
       //Query the API to obtain the GPUs information
-      gather: function() {
+      gatherLast: function() {
         appli = this
-        axios.get('http://localhost:3001/monitoring')
+        axios.get('http://localhost:3001/last')
         .then(function (response){
           appli.computerList = response.data
         })
@@ -500,15 +483,13 @@ const app = Vue.createApp({
         });
       },
 
-      getDisconnectedTime: function(nbTicks) {
+      getDisconnectedTime: function(seconds) {
         const minute = 60;
         const hour = minute * 60;
         const day = hour * 24;
         const month = day * 30;
       
-        let duration = '';
-        seconds = nbTicks * 300 -300
-        
+        let duration = '';        
         if(seconds >= month){
           duration = `${Math.floor(seconds / month)} months ${Math.floor((seconds % month) / day)}d`;
         } else if (seconds >= day) {
@@ -518,7 +499,7 @@ const app = Vue.createApp({
         } else if (seconds >= minute) {
           duration = `${Math.floor(seconds / minute)}m`;
         } else {
-          duration = `now`;
+          duration = `${seconds}s`;
         }
       
         return duration;
@@ -615,7 +596,16 @@ const app = Vue.createApp({
         axios.delete("http://localhost:3001/computer"+ this.selectedComputer)
       },
       nextSlide: function() {
-        this.activeIndex = (this.activeIndex + 1) % this.carouselItems.length;
+        hop = 1
+        while(hop < this.computerList.length){
+          index = (this.activeIndex + hop)% this.computerList.length
+          if(this.computerList[index].lastResponse == 0){
+            break
+          }
+          hop++
+        } 
+        this.activeIndex = (this.activeIndex + hop) % this.computerList.length;
+        
       },
       goToSlide: function(index) {
         this.activeIndex = index;
@@ -692,12 +682,12 @@ const app = Vue.createApp({
             })
 
             //Verification and logging of the connections and disconnections
-            if(computer.no_response !== oldVal[index].no_response){
-              if(parseInt(computer.no_response) == 1){
+            if(computer.lastResponse !== oldVal[index].lastResponse){
+              if(computer.lastResponse != 0){
                 logMessage = computer.IP + " offline"
                 newLog = {message:logMessage, date:logDate}
                 localApp.logs.unshift(newLog)
-              } else if(parseInt(computer.no_response) == 0){
+              } else {
                 logMessage = computer.IP + " online"
                 newLog = {message:logMessage, date:logDate}
                 localApp.logs.unshift(newLog)
@@ -725,7 +715,7 @@ const app = Vue.createApp({
     mounted(){
       console.log('App Mounted');
       setInterval(() => {
-        this.gather();
+        this.gatherLast();
       }, 3000000);
 
       setInterval(() => {
