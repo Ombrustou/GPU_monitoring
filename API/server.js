@@ -38,6 +38,11 @@ const connectToDatabase = async () => {
 
 
     // Define MongoDB ways
+    app.get('/monitoring', async (req, res) => {
+      const data = await collectionMongo.find().toArray();
+      res.send(data);
+    })
+
     app.get('/monitoring/:ip', async (req, res) => {
       const data = await collectionMongo.findOne({IP: (req.params.ip)}).toArray();
       res.send(data);
@@ -49,9 +54,26 @@ const connectToDatabase = async () => {
       // Transform the JSON by replacing the "history" array with the last GPU array
       const newData = data.map(item => {
         const lastGPUArray = item.history[item.history.length - 1].GPU;
+        const lasttimeStamp = item.history[item.history.length - 1].timestamp;
+        var lastLog = lasttimeStamp;
+        if (Object.keys(lastGPUArray).length === 0) {
+          var index = 2;
+          while (index < item.history.length && Object.keys(item.history[item.history.length - index].GPU).length === 0) {
+            index = index + 1;
+          }
+          if (index === item.history.length) {
+            lastLog = item.history[0].timestamp;
+          } else {
+            lastLog = item.history[item.history.length - index].timestamp;
+          }
+        }
+        lastResponse = lasttimeStamp - lastLog;
+        delete item.history;
         return {
           ...item,
-          history: lastGPUArray
+          GPU: lastGPUArray,
+          timestamp: lasttimeStamp, //Timestamp of the last GPU
+          lastResponse: lastResponse // Last response = 0 if there is GPU's information.
         };
       });
     
