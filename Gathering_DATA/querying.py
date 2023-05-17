@@ -27,7 +27,9 @@ while True:
 
             stdin, stdout, stderr = client.exec_command('last reboot')
             output = stdout.read().decode()
-            lastReboot = " ".join(output.split("\n")[1].split(" ")[3:8])
+            traitment = output.split("\n")[1].split(" ")[3:8]
+            traitment[-2] = ":".join(traitment[-2].split(":")[:-1])
+            lastReboot = " ".join(traitment)
 
             #This huge bash line returns the uuid of a gpu and informations about a processus running on the GPU
             # Output have this shape :
