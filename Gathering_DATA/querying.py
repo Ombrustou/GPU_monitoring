@@ -88,9 +88,9 @@ while True:
             obj = []
             for gpu in gpus:
                 if(gpu[0] in process):
-                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"memory_usage":int(gpu[4]),"gpu_usage":int(gpu[5]), "processus":process[gpu[0]]})
+                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"memory_usage":int(gpu[4]),"gpu_usage":int(gpu[5]), "process":process[gpu[0]]})
                 else:
-                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"memory_usage":int(gpu[4]),"gpu_usage":int(gpu[5]), "processus":[]})
+                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"memory_usage":int(gpu[4]),"gpu_usage":int(gpu[5]), "process":[]})
 
             if(computer['IP'] not in lastHistory):
                 lastHistory[computer['IP']] = time.time()
