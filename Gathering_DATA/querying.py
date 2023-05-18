@@ -31,6 +31,20 @@ while True:
             traitment[-2] = ":".join(traitment[-2].split(":")[:-1])
             lastReboot = " ".join(traitment)
 
+            # This bash line returns the utilization of the CPU and the memory
+            #  Output have this shape :
+            # 0.8
+            # 2.01532
+            #
+            # 0.8 is the percentage of utilization of the CPU
+            # 2.01532 is the percentage of utilization of the Memory
+            stdin, stdout, stderr = client.exec_command('top -bn1 | grep "Cpu(s)" | awk \'{cpu = $2 + $4} END {print cpu}\'; free -m | awk \'NR==2{mem = ($3/$2)*100} END {print mem}\'')
+            output = stdout.read().decode()
+            
+            lines = output.split("\n")
+            cpu,memory = float(lines[0]), float(lines[1])
+
+
             #This huge bash line returns the uuid of a gpu and informations about a processus running on the GPU
             # Output have this shape :
             # GPU-3b929a5f-6b42-01db-a07d-578246bde26a
@@ -81,12 +95,12 @@ while True:
             if(computer['IP'] not in lastHistory):
                 lastHistory[computer['IP']] = time.time()
                 #Update the document for the IP, if it doesn't exist insert a new one
-                db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'],"last_reboot":lastReboot},"$push": {"history":{"timestamp":time.time(), "GPU":obj}}},True)
+                db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'],"last_reboot":lastReboot},"$push": {"history":{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}}},True)
             else:
                 if(time.time() - lastHistory[computer['IP']] >= 300):
                     lastHistory[computer['IP']] = time.time()
                     #Update the document for the IP, if it doesn't exist insert a new one
-                    db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'],"last_reboot":lastReboot},"$push": {"history":{"timestamp":time.time(), "GPU":obj}}},True)
+                    db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'],"last_reboot":lastReboot},"$push": {"history":{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}}},True)
                 else:
                     history = db.data.find_one({"IP":computer['IP']})["history"]
                     history[-1]={"timestamp":time.time(), "GPU":obj}
@@ -97,7 +111,7 @@ while True:
         except:
             print("Couldn't reach ", computer['IP'])
             #Update the document for the IP, if it doesn't exist insert a new one
-            db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'],"last_reboot":"No information"},"$push": {"history":{"timestamp":time.time(), "GPU":[]}}},True)
+            db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'],"last_reboot":"No information"},"$push": {"history":{"timestamp":time.time()}}},True)
         finally:
             client.close()
 
