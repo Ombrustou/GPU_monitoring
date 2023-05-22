@@ -38,7 +38,7 @@ while True:
             #
             # 0.8 is the percentage of utilization of the CPU
             # 2.01532 is the percentage of utilization of the Memory
-            stdin, stdout, stderr = client.exec_command('top -bn1 | grep "Cpu(s)" | awk \'{cpu = $2 + $4} END {print cpu}\'; free -m | awk \'NR==2{mem = ($3/$2)*100} END {print mem}\'')
+            stdin, stdout, stderr = client.exec_command('sum=0; while read -r value; do if [[ $value == "0.0" ]]; then break; fi; sum=$(awk "BEGIN {printf \"%.2f\", $sum + $value}"); done <<< "$(ps --noheaders -x -eo pcpu --sort -%cpu)"; echo "$sum"; free -m | awk \'NR==2{mem = ($3/$2)*100} END {print mem}\'')
             output = stdout.read().decode()
             
             lines = output.split("\n")
