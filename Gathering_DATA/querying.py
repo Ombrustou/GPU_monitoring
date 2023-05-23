@@ -31,6 +31,10 @@ while True:
             traitment[-2] = ":".join(traitment[-2].split(":")[:-1])
             lastReboot = " ".join(traitment)
 
+            stdin, stdout, stderr = client.exec_command('hostname')
+            hostname = stdout.read().decode().replace("\n","")
+
+
             # This bash line returns the utilization of the CPU and the memory
             #  Output have this shape :
             # 0.8
@@ -44,42 +48,43 @@ while True:
             lines = output.split("\n")
             cpu,memory = float(lines[0]), float(lines[1])
 
-
-            #This huge bash line returns the uuid of a gpu and informations about a processus running on the GPU
+            #This huge bash line returns the uuid of each gpu and informations about the processus running on them
             # Output have this shape :
-            # GPU-3b929a5f-6b42-01db-a07d-578246bde26a
-            # gpuq 19726 121 53.6 1:53
+            # GPU-3b929a5f-6b42-01db-a07d-578246bde26a 3318
+            # gpuq 19726 88 53.6 1:53
             #
-            # Where gpuq is the user who launched the processus
+            # GPU-3b929a5f-6b42-01db-a07d-578246bde26a is the gpu's uuid
+            # 3318 is the number of MiB used by the process
+            # gpuq is the user who launched the processus
             # 19726 is the PID of the processus
-            # 121 is the percentage of the CPU used by the processus
+            # 88 is the percentage of the CPU used by the processus
             # 53.6 is the percentage of the memory used by the processus
             # 
-            stdin, stdout, stderr = client.exec_command('nvidia-smi --query-compute-apps=pid,gpu_uuid --format=csv,noheader,nounits | awk -F\', \' \'{cmd0="echo "$2; cmd1="ps --noheaders u"$1" | awk \\"{print \\\$1, \\\$2,\\\$3, \\\$4, \\\$10}\\""; system(cmd0" && "cmd1)}\'')
+            stdin, stdout, stderr = client.exec_command('nvidia-smi --query-compute-apps=pid,gpu_uuid,used_gpu_memory --format=csv,noheader,nounits | awk -F\', \' \'{cmd0="echo "$2" "$3 ; cmd1="ps --noheaders u"$1" | awk \\"{print \\\$1, \\\$2,\\\$3, \\\$4, \\\$10}\\""; system(cmd0" && "cmd1)}\'')
             output = stdout.read().decode()
 
             # test of a typical output 
-            # output = "GPU-3583dcda-fdae-b3a4-48c7-86d9064108aa\ngpuq 19726 121 53.6 1:53"
+            # output = "GPU-3583dcda-fdae-b3a4-48c7-86d9064108aa 3318\ngpuq 19726 88 53.6 1:53"
 
             lines = output.split("\n")
             process = {}
             lastGPU = ""
             for line in lines:
+                splitted = line.split(" ")
                 if(lastGPU == ""):
-                    lastGPU = line
-                    if(line in process):
-                        process[line].append({})
+                    lastGPU = splitted[0]
+                    if(lastGPU in process):
+                        process[lastGPU].append({"gpu_memory":int(splitted[1])})
                     else:     
-                        process[line] = [{}]
+                        process[lastGPU] = [{"gpu_memory":int(splitted[1])}]
                 else:
-                    splitted = line.split(" ")
                     process[lastGPU][-1]["user"] = splitted[0]
                     process[lastGPU][-1]["pid"] = int(splitted[1])
                     process[lastGPU][-1]["cpu"] = int(splitted[2])
-                    process[lastGPU][-1]["mem"] = float(splitted[3])
+                    process[lastGPU][-1]["memory"] = float(splitted[3])
                     lastGPU = ""
 
-            stdin, stdout, stderr = client.exec_command('nvidia-smi --query-gpu=gpu_uuid,index,name,temperature.gpu,utilization.memory,utilization.gpu --format=csv,noheader,nounits')
+            stdin, stdout, stderr = client.exec_command('nvidia-smi --query-gpu=gpu_uuid,index,name,temperature.gpu,memory.total,utilization.memory,utilization.gpu --format=csv,noheader,nounits')
             output = stdout.read().decode()
 
             gpus = output.split("\n")[:-1]
@@ -88,24 +93,25 @@ while True:
             obj = []
             for gpu in gpus:
                 if(gpu[0] in process):
-                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"memory_usage":int(gpu[4]),"gpu_usage":int(gpu[5]), "process":process[gpu[0]]})
+                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"max_memory":int(gpu[4]),"memory_usage":int(gpu[5]),"gpu_usage":int(gpu[6]), "process":process[gpu[0]]})
                 else:
-                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"memory_usage":int(gpu[4]),"gpu_usage":int(gpu[5]), "process":[]})
+                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"max_memory":int(gpu[4]),"memory_usage":int(gpu[5]),"gpu_usage":int(gpu[6]), "process":[]})
+
 
             if(computer['IP'] not in lastHistory):
                 lastHistory[computer['IP']] = time.time()
                 #Update the document for the IP, if it doesn't exist insert a new one
-                db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'],"last_reboot":lastReboot},"$push": {"history":{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}}},True)
+                db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'], "hostname": hostname, "last_reboot":lastReboot},"$push": {"history":{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}}},True)
             else:
                 if(time.time() - lastHistory[computer['IP']] >= 300):
                     lastHistory[computer['IP']] = time.time()
                     #Update the document for the IP, if it doesn't exist insert a new one
-                    db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'],"last_reboot":lastReboot},"$push": {"history":{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}}},True)
+                    db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'], "hostname": hostname, "last_reboot":lastReboot},"$push": {"history":{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}}},True)
                 else:
                     history = db.data.find_one({"IP":computer['IP']})["history"]
                     history[-1]={"timestamp":time.time(), "GPU":obj}
                     #Update the document for the IP, if it doesn't exist insert a new one
-                    db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'],"last_reboot":lastReboot,"history":history}},True)
+                    db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'], "hostname": hostname, "last_reboot":lastReboot,"history":history}},True)
 
         #If the remote computer is unreachable
         except:
