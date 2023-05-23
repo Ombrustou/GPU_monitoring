@@ -127,21 +127,30 @@ const connectToDatabase = async () => {
       }
     })
 
-    app.put('/computer/:ip/:IP/:username/:password', async (req, res) => {
+    app.put('/computer/:ip', async (req, res) => {
+      const { ip } = req.params;
+      const { IP, username, password } = req.body;
+    
       const computerCollection = dbMongo.collection('computer');
-      try{
-        const result = await computerCollection.updateOne({IP: String(req.params.ip)},{$set: {IP: req.params.IP, username: req.params.username, password: req.params.password}});
-        console.log(result)
-        if(result.modifiedCount === 1){
-          res.sendStatus(204)
-        }else{
-          res.sendStatus(404)
+      try {
+        const result = await computerCollection.updateOne(
+          { IP: String(ip) },
+          { $set: { IP, username, password } }
+        );
+    
+        console.log(result);
+        
+        if (result.modifiedCount === 1) {
+          res.sendStatus(204);
+        } else {
+          res.sendStatus(404);
         }
-      }catch (err){
+      } catch (err) {
         console.log(err);
-        res.status(500).send('Error while updating a computer')
+        res.status(500).send('Error while updating a computer');
       }
-    })
+    });
+    
 
     // Start the server
     const port = process.env.PORT || 3001;

@@ -40,6 +40,10 @@ db.createCollection("data", {
                     bsonType: "string",
                     description: "The last_reboot must be a string"
                 },
+                hostname:{
+                    bsonType: "string",
+                    description: "Hostname must be a string"
+                },
                 history:{
                     bsonType: "array",
                     items: {
@@ -87,7 +91,7 @@ db.createCollection("data", {
                                             bsonType: "array",
                                             items: {
                                                 bsonType: "object",
-                                                required: ["user","pid","cpu","mem"],
+                                                required: ["user","pid","cpu","mem","gpu_memory"],
                                                 properties:{
                                                     user: {
                                                         bsonType: "string",
@@ -107,6 +111,11 @@ db.createCollection("data", {
                                                         bsonType: "float",
                                                         minimum: 0,
                                                         description: "The memory must be a float greater than 0"
+                                                    },
+                                                    gpu_memory: {
+                                                        bsonType: "int",
+                                                        minimum: 0,
+                                                        description: "The GPU_memory must be a integer higher than 0"
                                                     }
                                                 }
                                             }
