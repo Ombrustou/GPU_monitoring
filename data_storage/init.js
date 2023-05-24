@@ -108,7 +108,7 @@ db.createCollection("data", {
                                                         description: "The cpu must be an integer higher than 0"
                                                     },
                                                     mem: {
-                                                        bsonType: "float",
+                                                        bsonType: "int",
                                                         minimum: 0,
                                                         description: "The memory must be a float greater than 0"
                                                     },
