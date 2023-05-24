@@ -2,12 +2,25 @@
 import paramiko
 import time
 from pymongo import MongoClient
+import argparse
 
-querying_interval = 1 #in seconds
-history_interval = 300 #in seconds
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='Exemple de parseur avec 3 arguments')
+    
+    parser.add_argument('querying', type=str, help='Argument querying interval')
+    parser.add_argument('history', type=str, help='Argument history interval')
+    parser.add_argument('last', type=str, help='Argument last, how much statement are stored')
+    
+    args = parser.parse_args()
+    return args
+
+args = parse_arguments()
+
+querying_interval = args.querying #in seconds
+history_interval = args.history #in seconds
+lasts_statements = args.last
 mongoClient = MongoClient('localhost', 27017)
 db = mongoClient.monitoring
-
 
 lastHistory = {}
 while True:
@@ -46,6 +59,8 @@ while True:
             output = stdout.read().decode()
             
             lines = output.split("\n")
+            if(lines[0] == ''):
+                lines[0] = 0
             cpu,memory = float(lines[0]), float(lines[1])
 
             #This huge bash line returns the uuid of each gpu and informations about the processus running on them
@@ -64,7 +79,7 @@ while True:
             output = stdout.read().decode()
 
             # test of a typical output 
-            # output = "GPU-3583dcda-fdae-b3a4-48c7-86d9064108aa 3318\ngpuq 19726 88 53.6 1:53"
+            output = "GPU-3583dcda-fdae-b3a4-48c7-86d9064108aa 3318\ngpuq 19726 88 53.6 1:53"
 
             lines = output.split("\n")
             process = {}
@@ -81,7 +96,7 @@ while True:
                     process[lastGPU][-1]["user"] = splitted[0]
                     process[lastGPU][-1]["pid"] = int(splitted[1])
                     process[lastGPU][-1]["cpu"] = int(splitted[2])
-                    process[lastGPU][-1]["memory"] = float(splitted[3])
+                    process[lastGPU][-1]["memory"] = round(float(splitted[3]))
                     lastGPU = ""
 
             stdin, stdout, stderr = client.exec_command('nvidia-smi --query-gpu=gpu_uuid,index,name,temperature.gpu,memory.total,utilization.memory,utilization.gpu --format=csv,noheader,nounits')
@@ -93,9 +108,11 @@ while True:
             obj = []
             for gpu in gpus:
                 if(gpu[0] in process):
-                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"max_memory":int(gpu[4]),"memory_usage":int(gpu[5]),"gpu_usage":int(gpu[6]), "process":process[gpu[0]]})
+                    for proc in process[gpu[0]]:
+                        proc["gpu_memory"] = round(proc["gpu_memory"]*100/int(gpu[4]))
+                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"memory_usage":int(gpu[5]),"gpu_usage":int(gpu[6]), "process":process[gpu[0]]})
                 else:
-                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"max_memory":int(gpu[4]),"memory_usage":int(gpu[5]),"gpu_usage":int(gpu[6]), "process":[]})
+                    obj.append({"uuid":gpu[0], "number":int(gpu[1]),"name":gpu[2],"temperature":int(gpu[3]),"memory_usage":int(gpu[5]),"gpu_usage":int(gpu[6]), "process":[]})
 
 
             if(computer['IP'] not in lastHistory):
