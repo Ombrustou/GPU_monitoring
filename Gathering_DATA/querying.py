@@ -91,21 +91,22 @@ while True:
 
             lines = output.split("\n")
             process = {}
-            lastGPU = ""
-            for line in lines:
-                splitted = line.split(" ")
-                if(lastGPU == ""):
-                    lastGPU = splitted[0]
-                    if(lastGPU in process):
-                        process[lastGPU].append({"gpu_memory":int(splitted[1])})
-                    else:     
-                        process[lastGPU] = [{"gpu_memory":int(splitted[1])}]
-                else:
-                    process[lastGPU][-1]["user"] = splitted[0]
-                    process[lastGPU][-1]["pid"] = int(splitted[1])
-                    process[lastGPU][-1]["cpu"] = int(splitted[2])
-                    process[lastGPU][-1]["memory"] = round(float(splitted[3]))
-                    lastGPU = ""
+            if(len(lines) % 2 == 0):
+                lastGPU = ""
+                for line in lines:
+                    splitted = line.split(" ")
+                    if(lastGPU == ""):
+                        lastGPU = splitted[0]
+                        if(lastGPU in process):
+                            process[lastGPU].append({"gpu_memory":int(splitted[1])})
+                        else:     
+                            process[lastGPU] = [{"gpu_memory":int(splitted[1])}]
+                    else:
+                        process[lastGPU][-1]["user"] = splitted[0]
+                        process[lastGPU][-1]["pid"] = int(splitted[1])
+                        process[lastGPU][-1]["cpu"] = int(splitted[2])
+                        process[lastGPU][-1]["memory"] = round(float(splitted[3]))
+                        lastGPU = ""
 
             stdin, stdout, stderr = client.exec_command('nvidia-smi --query-gpu=gpu_uuid,index,name,temperature.gpu,memory.total,utilization.memory,utilization.gpu --format=csv,noheader,nounits')
             output = stdout.read().decode()
