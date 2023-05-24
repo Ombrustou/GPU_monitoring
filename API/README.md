@@ -33,6 +33,51 @@ Finally when your set of computer is done, you can now get some data from the co
 To get this data you can use the */monitoring*
 You'll be receiving all the data as a JSON file.
 
+If you only want to retrieve the information for every computer and only get the last activity on them you can use */last*
+With that you will receive this type of data:
+
+```json
+_id: ObjectId("646b7b66477a2e61522d55ff"),
+IP: '127.0.0.1',
+history: [
+    {
+      timestamp: 1684765565.0283391,
+      GPU: [
+        {
+          uuid: 'GPU-uuid1',
+          number: 0,
+          name: 'GeForce GTX 1080 Ti',
+          temperature: 31,
+          max_memory: 11175,
+          memory_usage: 0,
+          gpu_usage: 0,
+          process: []
+        },
+        {
+          uuid: 'GPU-uuid2',
+          number: 1,
+          name: 'GeForce GTX 1080 Ti',
+          temperature: 28,
+          max_memory: 11178,
+          memory_usage: 0,
+          gpu_usage: 0,
+          process: [
+            {
+              gpu_memory: 3318,
+              user: 'gpuq',
+              pid: 19726,
+              cpu: 88,
+              memory: 53.6
+            }
+          ]
+        }
+      ]
+    }
+  ],
+hostname: 'JohnDoe',
+last_reboot: 'May  2 16:15 2023'
+```
+
 ## Getting Started with Docker
 
 To get started with API part of GPU monitoring-AURORA, follow these steps:
@@ -67,7 +112,7 @@ To add a computer
 > curl -X POST http://localhost:3001/computer -H 'Content-Type: application/json' -d '{"IP":"172.24.198.42","username":"my_username","password":"my_password"}'
 
 To modify a computer
->curl -X PUT http://localhost:3001/computer/172.24.198.42/192.168.0.100/admin/password123 -H "Content-Type: application/json" -d '{"IP":"192.168.0.100","username":"admin","password":"password123"}' 
+>curl -X PUT http://localhost:3001/computer/172.24.198.42 -H "Content-Type: application/json" -d '{"IP":"192.168.0.100","username":"admin","password":"password123"}' 
 
 To delete a computer
 >curl -X DELETE http://localhost:3001/computer/192.168.0.100 -H 'Content-Type: application/json' -d '{"IP": "192.168.0.100"}'
