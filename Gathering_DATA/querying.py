@@ -7,9 +7,9 @@ import argparse
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Exemple de parseur avec 3 arguments')
     
-    parser.add_argument('querying', type=str, help='Argument querying interval')
-    parser.add_argument('history', type=str, help='Argument history interval')
-    parser.add_argument('last', type=str, help='Argument last, how much statement are stored')
+    parser.add_argument('querying', type=int, help='Argument querying interval in seconds')
+    parser.add_argument('history', type=int, help='Argument history interval in seconds')
+    parser.add_argument('last', type=int, help='Argument last, how much statement are stored')
     
     args = parser.parse_args()
     return args
@@ -19,6 +19,14 @@ args = parse_arguments()
 querying_interval = args.querying #in seconds
 history_interval = args.history #in seconds
 lasts_statements = args.last
+
+if(querying_interval < 0):
+    raise Exception("querying can't be bellow than 0")
+if(history_interval < 0):
+    raise Exception("history can't be bellow than 0")
+if(lasts_statements < 0):
+    raise Exception("last can't be bellow than 0")
+
 mongoClient = MongoClient('localhost', 27017)
 db = mongoClient.monitoring
 
