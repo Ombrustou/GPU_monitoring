@@ -24,8 +24,8 @@ if(querying_interval < 0):
     raise Exception("querying can't be bellow than 0")
 if(history_interval < 0):
     raise Exception("history can't be bellow than 0")
-if(lasts_statements < 0):
-    raise Exception("last can't be bellow than 0")
+if(lasts_statements < 1):
+    raise Exception("last can't be bellow than 1")
 
 mongoClient = MongoClient('localhost', 27017)
 db = mongoClient.monitoring
@@ -69,7 +69,7 @@ while True:
             lines = output.split("\n")
             if(lines[0] == ''):
                 lines[0] = 0
-            cpu,memory = float(lines[0]), float(lines[1])
+            cpu,memory = round(float(lines[0])), round(float(lines[1]))
 
             #This huge bash line returns the uuid of each gpu and informations about the processus running on them
             # Output have this shape :
@@ -87,7 +87,7 @@ while True:
             output = stdout.read().decode()
 
             # test of a typical output 
-            output = "GPU-3583dcda-fdae-b3a4-48c7-86d9064108aa 3318\ngpuq 19726 88 53.6 1:53"
+            # output = "GPU-3583dcda-fdae-b3a4-48c7-86d9064108aa 3318\ngpuq 19726 88 53.6 1:53"
 
             lines = output.split("\n")
             process = {}
@@ -126,12 +126,12 @@ while True:
             if(computer['IP'] not in lastHistory):
                 lastHistory[computer['IP']] = time.time()
                 #Update the document for the IP, if it doesn't exist insert a new one
-                db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'], "hostname": hostname, "last_reboot":lastReboot},"$push": {"history":{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}}},True)
+                db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'], "hostname": hostname, "last_reboot":lastReboot},"$push": {"history":{'$each': [{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}],'$slice': -lasts_statements}}},True)
             else:
-                if(time.time() - lastHistory[computer['IP']] >= 300):
+                if(time.time() - lastHistory[computer['IP']] >= history_interval):
                     lastHistory[computer['IP']] = time.time()
                     #Update the document for the IP, if it doesn't exist insert a new one
-                    db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'], "hostname": hostname, "last_reboot":lastReboot},"$push": {"history":{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}}},True)
+                    db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'], "hostname": hostname, "last_reboot":lastReboot},"$push": {"history":{'$each': [{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}],'$slice': -lasts_statements}}},True)
                 else:
                     history = db.data.find_one({"IP":computer['IP']})["history"]
                     history[-1]={"timestamp":time.time(), "GPU":obj}
