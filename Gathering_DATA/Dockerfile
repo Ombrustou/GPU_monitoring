@@ -4,4 +4,4 @@ COPY requirements.txt /app
 RUN pip install -r requirements.txt
 COPY querying.py /app
 
-CMD ["python", "querying.py","1","1000","600"]
+CMD ["python", "querying.py","30","1000","600"]
