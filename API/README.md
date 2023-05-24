@@ -36,7 +36,7 @@ You'll be receiving all the data as a JSON file.
 If you only want to retrieve the information for every computer and only get the last activity on them you can use */last*
 With that you will receive this type of data:
 
-```json
+```javascript
 _id: ObjectId("646b7b66477a2e61522d55ff"),
 IP: '127.0.0.1',
 history: [
