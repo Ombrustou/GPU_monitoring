@@ -48,48 +48,122 @@
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:100
-            }]
+              gpu_usage: 50, 
+              max_capacity:100,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
+            }],
+            CPU: 0,
+            MEMORY: 5
           },
           {
             IP: "192.168.123.125",
             lastResponse: 65,
             hostname: 'Hartley0.5',
             last_reboot: 'May  2 16:15 2023',
-                GPU: [{
+            GPU: [{
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 2,
               name: "NVIDIA GeForce GTX 1080 Ti",            
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 3,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 4,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'neelu',
+                  pid: 2007,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 5,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'neelu',
+                  pid: 2007,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
 
             }]
           },{
@@ -102,75 +176,197 @@
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 2,
+              name: "NVIDIA GeForce GTX 1080 Ti",            
+              temperature: 23,
+              memory_usage: 52,
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
+            },
+            {
+              number: 3,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 4,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'neelu',
+                  pid: 2007,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 5,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
-            },
-            {
-              number: 1,
-              name: "NVIDIA GeForce GTX 1080 Ti",
-              temperature: 23,
-              memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'neelu',
+                  pid: 2007,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
+
             }]
           },{
             IP: "192.168.123.127",
             lastResponse: 0,
             hostname: 'Hartley1',
             last_reboot: 'May  2 16:15 2023',
-                GPU: [{
+            GPU: [{
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
-              name: "NVIDIA GeForce GTX 1080 Ti",
+              number: 2,
+              name: "NVIDIA GeForce GTX 1080 Ti",            
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 3,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 4,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'neelu',
+                  pid: 2007,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 5,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'neelu',
+                  pid: 2007,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
+
             }]
           },{
             IP: "192.168.123.128",
@@ -182,35 +378,105 @@
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 2,
+              name: "NVIDIA GeForce GTX 1080 Ti",            
+              temperature: 23,
+              memory_usage: 52,
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                },
+                {
+                  gpu_memory: 330,
+                  user: 'neelu',
+                  pid: 2007,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
+            },
+            {
+              number: 3,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 4,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'neelu',
+                  pid: 2007,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
-              number: 1,
+              number: 5,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
-            },
-            {
-              number: 1,
-              name: "NVIDIA GeForce GTX 1080 Ti",
-              temperature: 23,
-              memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'neelu',
+                  pid: 2007,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
+
             }]
           },{
             IP: "192.168.123.129",
@@ -222,35 +488,95 @@
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             }]
           },{
             IP: "192.168.123.121",
@@ -262,35 +588,95 @@
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             }]
           },{
             IP: "192.168.123.122",
@@ -302,35 +688,95 @@
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             }]
           },{
             IP: "192.168.123.120",
@@ -342,35 +788,95 @@
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             }]
           },{
             IP: "192.168.123.134",
@@ -382,35 +888,95 @@
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             }]
           },{
             IP: "192.168.123.132",
@@ -422,35 +988,95 @@
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             }]
           },{
             IP: "192.168.123.133",
@@ -462,35 +1088,95 @@
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             },
             {
               number: 1,
               name: "NVIDIA GeForce GTX 1080 Ti",
               temperature: 23,
               memory_usage: 52,
-              gpu_usage: 50, max_capacity:400
+              gpu_usage: 50, 
+              max_capacity:400,
+              process: [
+                {
+                  gpu_memory: 330,
+                  user: 'vaplab',
+                  pid: 5407,
+                  cpu: 172,
+                  memory: 228,
+                  duration: '88:00',
+                  exec: 'video_demo.py'
+                }
+              ]
             }]
           },{
             IP: "192.168.123.140",
@@ -872,7 +1558,7 @@
         autoScrollDown: function (element) {
           var start = element.scrollTop;
           var end = element.scrollHeight - element.clientHeight;
-          var duration = 5000; // Duration of the animation in milliseconds
+          var duration = 6000; // Duration of the animation in milliseconds
           var startTime = null;
           test = this
         
@@ -944,7 +1630,6 @@
 
           // Crawling over the history data
           this.history.forEach(entry => {
-            console.log(new Date(entry.timestamp))
             timestamp = new Date(entry.timestamp*1000).getTime() // timestamp to date
             cpu = entry.CPU
             memory = entry.MEMORY
@@ -997,15 +1682,7 @@
             })
           })
 
-
-
-          console.log("Timestamps:", timestamps);
-          console.log("CPU Data:", cpuData);
-          console.log("Memory Data:", memoryData);
-          console.log("GPU Data:", gpuData);
-
-
-          Highcharts.chart(this.computerList[index].IP, {
+          Highcharts.chart(this.computerList[index].IP + 'history', {
 
             title: {
               text: 'History',
@@ -1038,7 +1715,7 @@
               align: 'right',
               verticalAlign: 'middle',
               itemStyle: {
-                fontSize: '70%' // Changer la taille de la police de la légende
+                fontSize: '0.6vw' // Changer la taille de la police de la légende
               }
             },
           
@@ -1047,7 +1724,6 @@
                 label: {
                   connectorAllowed: false
                 },
-                pointStart: 2010
               }
             },
 
@@ -1057,8 +1733,118 @@
           
             series: dataToDisplay  
           });
-          //Highcharts.chart(this.computerList[index].IP, options);
         },
+
+        displayProcess: function(index) {
+          var hostname = this.computerList[index].hostname;
+        
+          // Arrays to store data
+          var dataProc = [];
+          var gpus = [];
+          var users = [];
+          var associations = {}; // Tableau ou objet pour mémoriser les associations existantes
+        
+          // Crawling over the history data
+          this.computerList[index].GPU.forEach(gpu => {
+            gpu.process.forEach(proc => {
+              var user = proc.user;
+              var exec = proc.exec +":" +proc.pid;
+              var gpuNumber = "GPU " + gpu.number;
+        
+              // Vérifier si l'utilisateur existe déjà
+              if (users.indexOf(user) === -1) {
+                users.push(user);
+                dataProc.push([undefined, user]); // Relier l'utilisateur au nœud de base (undefined)
+              }
+        
+              // Vérifier si l'association user-exec existe déjà
+              if (!associations[user]) {
+                associations[user] = {};
+              }
+              if (!associations[user][exec]) {
+                associations[user][exec] = {};
+                dataProc.push([user, exec, 3]);
+        
+              } if (!associations[user][exec][gpuNumber]) {
+                associations[user][exec][gpuNumber] = true;
+                // Ajouter l'association user-exec à dataProc
+                dataProc.push([exec, gpuNumber, 6]);
+              }
+        
+            });
+          });
+        
+          console.log(dataProc);
+
+          Highcharts.chart(this.computerList[index].IP + 'process', {
+            chart: {
+                marginRight: 100
+            },
+            title: {
+                text: ''
+            },
+            series: [
+                {
+                    type: 'treegraph',
+                    keys: ['parent', 'id', 'level'],
+                    clip: false,
+                    data: dataProc,
+                    marker: {
+                        symbol: 'circle',
+                        radius: 6,
+                        fillColor: '#ffffff',
+                        lineWidth: 3
+                    },
+                    dataLabels: {
+                        align: 'left',
+                        pointFormat: '{point.id}',
+                        style: {
+                            color: '#000000',
+                            textOutline: '3px #ffffff',
+                            whiteSpace: 'nowrap'
+                        },
+                        x: 24,
+                        crop: false,
+                        overflow: 'none'
+                    },
+                    levels: [
+                        {
+                            level: 1,
+                            levelIsConstant: false
+                        },
+                        {
+                            level: 2,
+                            colorByPoint: true
+                        },
+                        {
+                            level: 3,
+                            colorVariation: {
+                                key: 'brightness',
+                                to: -0.5
+                            }
+                        },
+                        {
+                            level: 4,
+                            colorVariation: {
+                                key: 'brightness',
+                                to: 0.5
+                            }
+                        },
+                        {
+                            level: 6,
+                            dataLabels: {
+                                x: 10
+                            },
+                            marker: {
+                                radius: 4
+                            }
+                        }
+                    ]
+                }
+            ]
+        })
+        },
+        
 
         nextSlide: function() {
           hop = 1
@@ -1080,7 +1866,7 @@
             if (!this.userSelectionTimeout) {
               this.nextSlide();
             }
-          }, 5000);
+          }, 20000); //Carousel change every 20s
         },
         stopAutoChange: function () {
           clearInterval(this.autoChangeInterval);
@@ -1168,6 +1954,7 @@
           handler: function(newVal, oldVal) {         
               localApp = this
               this.displayHistory(newVal)
+              this.displayProcess(newVal)
               buttons = document.getElementsByClassName('highcharts-a11y-proxy-button highcharts-no-tooltip');
               // Ajout de l'écouteur d'événements sur le clic du bouton
               buttons.forEach(button => {
@@ -1201,9 +1988,10 @@
 
         setInterval(() => {
           this.autoScroll();
-        }, 400);
+        }, 3000);
 
-        this.startAutoChange();
+        this.startAutoChange()
+        this.displayProcess(0)
         this.displayHistory(0)
     }
     });

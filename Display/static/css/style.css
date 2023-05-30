@@ -7,8 +7,8 @@ body{
     height: 100vh;
 }
 
-h5 {
-  margin-bottom: 0%;
+td {
+  overflow: hidden;
 }
 
 .sidebar {
@@ -73,12 +73,6 @@ h5 {
     border-top-right-radius: 0.5em;
     background-color: lightgray;
     opacity: 90%;
-  }
-
-  .status-led{
-    left:0%;
-    width: 2em;
-    height: 2em;
   }
 
   .list-group-item{
@@ -224,13 +218,13 @@ h5 {
   flex-wrap: wrap;
 }
 
-.col.details {
+.col.details, .col-3.details {
   margin-top: 1vh;
   margin-left: 0.5vw;
   margin-right: 0.5vw;
   margin-bottom: 1vh;
   height: 19vh;
-  background-color: aqua;
+  background-color: white;
 
 }
 
