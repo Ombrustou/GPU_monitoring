@@ -1783,6 +1783,9 @@
             title: {
                 text: ''
             },
+            subtitle: {
+                text: new Date().toLocaleDateString() + "  " +new Date().toLocaleTimeString()
+            },
             series: [
                 {
                     type: 'treegraph',
