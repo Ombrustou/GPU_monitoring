@@ -104,7 +104,6 @@ while True:
                         process[lastGPU][-1]["pid"] = int(splitted[1])
                         process[lastGPU][-1]["cpu"] = round(float(splitted[2]))
                         process[lastGPU][-1]["memory"] = round(float(splitted[3]))
-                        process[lastGPU][-1]["duration"] = splitted[9]
 
                         execLine = splitted[10]
                         parsedExec = execLine.split(" ")
