@@ -7,6 +7,10 @@ body{
     height: 100vh;
 }
 
+h5 {
+  margin-bottom: 0%;
+}
+
 .sidebar {
     position: fixed;
     text-align: center;
@@ -87,21 +91,22 @@ body{
     opacity: 70%;
   }
 
-  .info{
-    padding-top: 1%;
-  }
-
+  
   .flex-container.main {
-    padding-top: 2%;
-    padding-left: 3%;
+    padding-top: 1vh;
+    padding-left: 3vw;
     display: flex;
     flex-wrap: wrap;
   }
+  
+
   
   .card.computer {
     border-radius: 0.7em;
     flex-basis: 22%; /* 4 items per line */
     text-align: center;
+    font-size: 0.8vw;
+
   }
 
   .connected {
@@ -114,6 +119,12 @@ body{
     height:7em;
     overflow-x: hidden;
     scroll-behavior:smooth;
+}
+
+.scroll-area-sm.main {
+  height: 77vh;
+  overflow-x: hidden;
+  scroll-behavior:smooth;
 }
 
 .btn{
@@ -196,11 +207,15 @@ body{
 }
 
 #detail {
+  position: fixed;
+  bottom: 0;
   border-radius: 0.7em;
   border-bottom-right-radius: 2em;
   border-bottom-left-radius: 2em ;
-  width: 86.5vw;
-  height: 27vh;
+  width: 86vw;
+  font-size: 0.8vw;
+  top: 79vh;
+  left: 3vw;
 }
 
 
@@ -214,11 +229,12 @@ body{
   margin-left: 0.5vw;
   margin-right: 0.5vw;
   margin-bottom: 1vh;
-  height: 17em;
+  height: 19vh;
   background-color: aqua;
 
 }
 
 .deleteButton, .modifyButton{
+  margin-top: 1vh;
   font-size: x-small;
 }
