@@ -8,13 +8,13 @@ Welcome to the DATA_Gathering folder of the GPU Monitoring GitHub repository! Th
 - [Contributors](#contributors)
 ## Contents
 
-- `querying.py`: This Python script is responsible for querying the Mongo database using Pymongo to retrieve the list of remote computers to query. It utilizes Paramiko to establish SSH connections with the remote computers and gather data about the GPU state.
+- [querying.py](querying.py): This Python script is responsible for querying the Mongo database using Pymongo to retrieve the list of remote computers to query. It utilizes Paramiko to establish SSH connections with the remote computers and gather data about the GPU state.
 
 
-- `requirements.txt`: This file lists the Python libraries required to run the `querying.py` script.
+- [requirements.txt](requirements.txt): This file lists the Python libraries required to run the [querying.py](querying.py) script.
 
 
-- `Dockerfile`: This Dockerfile is provided to build a Docker image that runs the AURORA application. It ensures all dependencies are properly installed and sets up the environment for seamless execution.
+- [Dockerfile](Dockerfile): This Dockerfile is provided to build a Docker image that runs the AURORA application. It ensures all dependencies are properly installed and sets up the environment for seamless execution.
 
 ## Getting Started with Docker
 
