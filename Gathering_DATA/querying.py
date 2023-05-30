@@ -74,38 +74,48 @@ while True:
             #This huge bash line returns the uuid of each gpu and informations about the processus running on them
             # Output have this shape :
             # GPU-3b929a5f-6b42-01db-a07d-578246bde26a 3318
-            # gpuq 19726 88 53.6 1:53
+            # vaplab      5407  172 28.5 20799160 4675740 pts/1 Rl+ 09:09  88:00 python video_demo.py --device cuda:0 /home/vaplab/Documents/Results/stuttgart_02.avi ../configs/pspnet/ps
             #
             # GPU-3b929a5f-6b42-01db-a07d-578246bde26a is the gpu's uuid
             # 3318 is the number of MiB used by the process
-            # gpuq is the user who launched the processus
-            # 19726 is the PID of the processus
-            # 88 is the percentage of the CPU used by the processus
-            # 53.6 is the percentage of the memory used by the processus
+            # the second line correspond to a ls u line
             # 
-            stdin, stdout, stderr = client.exec_command('nvidia-smi --query-compute-apps=pid,gpu_uuid,used_gpu_memory --format=csv,noheader,nounits | awk -F\', \' \'{cmd0="echo "$2" "$3 ; cmd1="ps --noheaders u"$1" | awk \\"{print \\\$1, \\\$2,\\\$3, \\\$4, \\\$10}\\""; system(cmd0" && "cmd1)}\'')
+            stdin, stdout, stderr = client.exec_command('nvidia-smi --query-compute-apps=pid,gpu_uuid,used_gpu_memory --format=csv,noheader,nounits | awk -F\', \' \'{cmd0="echo "$2" "$3 ; cmd1="ps --noheaders u"$1; system(cmd0" && "cmd1)}\'')
             output = stdout.read().decode()
 
             # test of a typical output 
-            # output = "GPU-3583dcda-fdae-b3a4-48c7-86d9064108aa 3318\ngpuq 19726 88 53.6 1:53"
+            # output = "GPU-3583dcda-fdae-b3a4-48c7-86d9064108aa 3318\nvaplab\t5407\t172\t28.5\t20799160\t4675740\tpts/1\tRl+\t09:09\t88:00\tpython /test/video_demo.py --device cuda:0 /home/vaplab/Documents/Results/stuttgart_02.avi ../configs/pspnet/ps"
 
             lines = output.split("\n")
             process = {}
             if(len(lines) % 2 == 0):
                 lastGPU = ""
                 for line in lines:
-                    splitted = line.split(" ")
                     if(lastGPU == ""):
+                        splitted = line.split(" ")
                         lastGPU = splitted[0]
                         if(lastGPU in process):
                             process[lastGPU].append({"gpu_memory":int(splitted[1])})
                         else:     
                             process[lastGPU] = [{"gpu_memory":int(splitted[1])}]
                     else:
+                        splitted = line.split("\t")
                         process[lastGPU][-1]["user"] = splitted[0]
                         process[lastGPU][-1]["pid"] = int(splitted[1])
-                        process[lastGPU][-1]["cpu"] = int(splitted[2])
+                        process[lastGPU][-1]["cpu"] = round(float(splitted[2]))
                         process[lastGPU][-1]["memory"] = round(float(splitted[3]))
+                        process[lastGPU][-1]["duration"] = splitted[9]
+
+                        execLine = splitted[10]
+                        parsedExec = execLine.split(" ")
+
+                        if(len(parsedExec) != 0):
+                            for arg in parsedExec[1:]:
+                                if(arg[0] != "-"):
+                                    execLine = arg
+                                    break
+
+                        process[lastGPU][-1]["exec"] = execLine.split("/")[-1]
                         lastGPU = ""
 
             stdin, stdout, stderr = client.exec_command('nvidia-smi --query-gpu=gpu_uuid,index,name,temperature.gpu,memory.total,utilization.memory,utilization.gpu --format=csv,noheader,nounits')
