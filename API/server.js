@@ -40,12 +40,22 @@ const connectToDatabase = async () => {
     // Define MongoDB ways
     app.get('/monitoring', async (req, res) => {
       const data = await collectionMongo.find().toArray();
-      res.send(data);
+      const newData = data.map(item =>{
+        delete item._id;
+        return {
+          ...item
+        }
+      })
+      res.send(newData);
     })
 
-    app.get('/monitoring/:ip', async (req, res) => {
-      const data = await collectionMongo.findOne({IP: (req.params.ip)}).toArray();
-      res.send(data);
+    app.get('/history/:ip', async (req, res) => {
+      const data = await collectionMongo.findOne({IP: (req.params.ip)});
+      var newData = {}
+      if(data != null){
+        newData = data.history;
+      }
+      res.send(newData);
     });
 
     app.get('/last', async (req, res) => {
@@ -69,6 +79,7 @@ const connectToDatabase = async () => {
         }
         lastResponse = lasttimeStamp - lastLog;
         delete item.history;
+        delete item._id;
         return {
           ...item,
           GPU: lastGPUArray,
@@ -84,7 +95,12 @@ const connectToDatabase = async () => {
     app.get('/computer', async (req, res) => {
       const computerCollection = dbMongo.collection('computer');
       const data = await computerCollection.find().toArray();
-
+      const newData = data.map(item => {
+        delete item._id;
+        return{
+          ...item
+        }
+      })
       res.send(data);
     })
 
