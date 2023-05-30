@@ -77,7 +77,7 @@ while True:
             # vaplab      5407  172 28.5 20799160 4675740 pts/1 Rl+ 09:09  88:00 python video_demo.py --device cuda:0 /home/vaplab/Documents/Results/stuttgart_02.avi ../configs/pspnet/ps
             #
             # GPU-3b929a5f-6b42-01db-a07d-578246bde26a is the gpu's uuid
-            # 3318 is the number of MiB used by the process
+            # 3318 is the number of MiB of the GPU used by the process
             # the second line correspond to a ls u line
             # 
             stdin, stdout, stderr = client.exec_command('nvidia-smi --query-compute-apps=pid,gpu_uuid,used_gpu_memory --format=csv,noheader,nounits | awk -F\', \' \'{cmd0="echo "$2" "$3 ; cmd1="ps --noheaders u"$1; system(cmd0" && "cmd1)}\'')
