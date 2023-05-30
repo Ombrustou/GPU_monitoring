@@ -1,6 +1,6 @@
 # GPU Monitoring - DATA_Gathering
 
-Welcome to the DATA_Gathering folder of the GPU Monitoring GitHub repository! This folder contains the necessary files for data gathering and monitoring of GPU activity using the AURORA (Automated Utility for Real-time Observation and Reporting of Activity) tool.
+Welcome to the DATA_Gathering folder of the GPU Monitoring GitHub repository! This folder contains the necessary files for data gathering using the AURORA (Automated Utility for Real-time Observation and Reporting of Activity) tool.
 
 ## Table of Contents
 - [Contents](#contents)
