@@ -451,7 +451,7 @@
           if (!this.userSelectionTimeout) {
             this.nextSlide();
           }
-        }, 1000); //Carousel change every 20s
+        }, 20000); //Carousel change every 20s
       },
       stopAutoChange: function () {
         clearInterval(this.autoChangeInterval);
