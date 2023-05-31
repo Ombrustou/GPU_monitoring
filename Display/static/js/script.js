@@ -474,8 +474,8 @@
           logDate = now.toLocaleDateString()
           logDate = logDate + " - " + now.toLocaleTimeString()
 
-          if(oldVal != undefined){
-            newVal.forEach(function(computer, index) {
+          newVal.forEach(function(computer, index) {
+            if(oldVal[index] != undefined){
               computer.GPU.forEach(function(gpu, indexGPU){
                 oldData = oldVal[index].GPU[indexGPU]
                 if(oldData != undefined) {
@@ -534,8 +534,8 @@
                   localApp.disconnectedPC.splice(localApp.disconnectedPC.indexOf(computer.IP), 1)
                 }
               }
-            });
-          }
+            }
+          })
         },
         deep: true
       },
