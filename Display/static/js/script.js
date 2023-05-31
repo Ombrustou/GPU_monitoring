@@ -1608,10 +1608,10 @@
           this.gatherLast()
         },
 
-        displayHistory: function(index) {
+        displayHistory: async function(index) {
           appli = this
-          /*
-          axios.get('http://localhost:3001/history/'+appli.computerList[index].IP)
+          
+          await axios.get('http://localhost:3001/history/'+appli.computerList[index].IP)
           .then(function (response){
             appli.history = response.data
           })
@@ -1620,7 +1620,7 @@
             console.log(error);
             //alert("Error From Api");
           });
-          */
+          
 
           // Arrays to store datas
           timestamps = []
@@ -1987,9 +1987,9 @@
        * 1000 -> 1second
        * Set by default to 300000 -> 5minutes
        */
-      mounted(){
+      async mounted(){
         console.log('App Mounted');
-        this.gatherLast()
+        await this.gatherLast()
         setInterval(() => {
           this.gatherLast();
         }, 3000000);

@@ -174,22 +174,21 @@
                 </div>
             </div>
             <script>
-                // Get the modal element
-                var modal = document.getElementById('formModal');
-
-                // Get the input field or button inside the modal
-                var inputField = modal.querySelector('.btn btn-primary danger'); // Replace 'input' with the appropriate selector
-
-                // Add an event listener to the input field or button
-                inputField.addEventListener('keyup', function(event) {
+                // Attach a keyup event listener to the document
+                document.addEventListener('keyup', function(event) {
                 // Check if the Enter key was pressed
                 if (event.keyCode === 13) {
-                    // Perform the validation logic here
+                    // Get the input field or button inside the modal
+                    var inputField = document.querySelector('.btn btn-primary danger'); // Replace with the appropriate selector
 
-                    // Close the modal (optional)
-                    modal.style.display = 'none';
+                    // Check if the event target matches the input field or button
+                    if (event.target === inputField) {
+                    // Call the Vue.js method using Vue instance or component
+                    app.addComputer(); // Replace with your Vue.js instance and method names
+                    }
                 }
                 });
+
             </script>
             <div class="modal fade" id="deleteModal">
                 <div class="modal-dialog">
