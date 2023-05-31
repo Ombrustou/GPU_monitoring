@@ -154,15 +154,15 @@
                             <form>
                                 <div class="col mb-4">
                                     IP address:
-                                    <input name="address" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.IP">
+                                    <input name="address" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.IP" required>
                                 </div>
                                 <div class="col mb-4">
                                     Username:
-                                    <input name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.username">
+                                    <input name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.username" required>
                                 </div>
                                 <div class="col mb-4">
                                     Password:
-                                    <input type="password" name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.password">
+                                    <input type="password" name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.password" required>
                                 </div>
                             </form>         
                         </div>
@@ -173,6 +173,24 @@
                     </div>
                 </div>
             </div>
+            <script>
+                // Get the modal element
+                var modal = document.getElementById('formModal');
+
+                // Get the input field or button inside the modal
+                var inputField = modal.querySelector('.btn btn-primary danger'); // Replace 'input' with the appropriate selector
+
+                // Add an event listener to the input field or button
+                inputField.addEventListener('keyup', function(event) {
+                // Check if the Enter key was pressed
+                if (event.keyCode === 13) {
+                    // Perform the validation logic here
+
+                    // Close the modal (optional)
+                    modal.style.display = 'none';
+                }
+                });
+            </script>
             <div class="modal fade" id="deleteModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
