@@ -1480,9 +1480,9 @@
           this.collapsed = !this.collapsed;
         }, 
         //Query the API to obtain the GPUs information
-        gatherLast: function() {
+        gatherLast: async function() {
           appli = this
-          axios.get('http://localhost:3001/last')
+          await axios.get('http://localhost:3001/last')
           .then(function (response){
             appli.computerList = response.data
           })
