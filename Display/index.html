@@ -69,7 +69,7 @@
                             </div>
                         </perfect-scrollbar>
                     </div>
-                    <div id="detail" class="card ms-2">
+                    <div id="detail" :class="['card', 'ms-2', {hidden: computerList.length == 0}]">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div v-for="(item, index) in computerList" :key="index" :class="{'carousel-item': true, active: index === activeIndex}">
