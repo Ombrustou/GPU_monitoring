@@ -1989,6 +1989,7 @@
      */
     mounted(){
       console.log('App Mounted');
+      this.gatherLast()
       setInterval(() => {
         this.gatherLast();
       }, 3000000);
