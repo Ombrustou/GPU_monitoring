@@ -13,8 +13,15 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-        <!-- MDB -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        
+        <script src="https://code.highcharts.com/modules/series-label.js"></script>
+        <script src="https://code.highcharts.com/modules/treemap.js"></script>
+        <script src="https://code.highcharts.com/modules/treegraph.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 
 
@@ -25,54 +32,112 @@
     <body>
         <div class="app">
             <div class="row">
-                <div class="flex-container">
-                    <div :class="['card', 'my-3', 'ms-2', {connected: computer.no_response >= 1}]" v-for="computer in computerList" :key="computer.IP">
-                        <div class="card-header" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = computer">
-                            <div class="row">
-                                <img class="connectedIcon" src="static/media/wifi.png">
-                                <h5 class="card-title text-center">{{computer.IP}}</h5>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="scroll-area-sm autoScroll">
-                                <perfect-scrollbar class="ps-show-limits">
-                                    <div style="position: static;" class="ps ps--active-y">
-                                        <div class="ps-content">
-                                            <ul class="list-group list-group-flush">
-                                                <li :class="['list-group-item', {connected: computer.no_response >= 1}]" v-if="computer.no_response < 1" v-for="gpu in computer.GPU" :key="gpu.id">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper ">
-                                                            <div class="widget-content-left col-12">
-                                                                <div class="row">
-                                                                    <div class="col-1">
-                                                                        <img :src="status(gpu.temperature, gpu.usage, gpu.max_capacity)" class="status-led">
-                                                                    </div>
-                                                                    <div class="info col">
-                                                                        <!--To save some space within the card, i cut off the "NVIDIA" display with the slice() function--> 
-                                                                        {{gpu.number}} - {{gpu.name.slice(7)}} - {{gpu.temperature}}°C - {{toPercent(gpu.usage, gpu.max_capacity)}}% 
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li :class="['list-group-item', {connected: computer.no_response >= 1}]" v-else>
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper ">
-                                                            <div class="widget-content-left col-12">
-                                                                <div class="row">
-                                                                    <div class="info col">
-                                                                        Disconnected since: {{getDisconnectedTime(computer.no_response)}} 
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>  
+                <div class="scroll-area-sm main">
+                    <perfect-scrollbar class="ps-show-limits">
+                        <div class="flex-container main">
+                            <div :class="['card', 'computer', 'my-3', 'ms-2', {connected: computer.lastResponse != 0}]" v-for="(computer, index) in computerList" :key="computer.IP">
+                                <div class="card-header" @click="goToSlide(index)">
+                                    <div class="row">
+                                        <img :class="['connectedIcon', {hidden: index != this.activeIndex}]" src="static/media/wifi.png">
+                                        <h5 class="card-title text-center">{{computer.hostname}}</h5>
+                                        <h8 class="card-subtitle text-center">Last reboot: {{computer.last_reboot}}</h8>
                                     </div>
-                                </perfect-scrollbar>
+                                </div>
+                                <div class="card-body">
+                                    <div class="scroll-area-sm autoScroll">
+                                        <perfect-scrollbar class="ps-show-limits">
+                                            <div style="position: static;" class="ps ps--active-y">
+                                                <div class="ps-content">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li :class="['list-group-item', {connected: computer.lastResponse != 0}]" v-if="computer.lastResponse == 0" v-for="gpu in computer.GPU" :key="gpu.id">
+                                                            <div class="row">
+                                                                    <img :src="status(gpu.temperature, gpu.gpu_usage, gpu.memory_usage)" class="status-led col-1" style="width: 3.5em;">
+                                                                <div class="info col">
+                                                                    {{gpu.number}} - {{gpu.temperature}}°C - Memory: {{gpu.memory_usage}}% - Usage: {{gpu.gpu_usage}}%
+                                                                </div>
+                                                            </div>  
+                                                        </li>
+                                                        <li :class="['list-group-item', {connected: computer.lasResponse != 0}]" v-else>
+                                                            Disconnected for {{getDisconnectedTime(computer.lastResponse)}} 
+                                                        </li>
+                                                    </ul>
+                                                </div>  
+                                            </div>
+                                        </perfect-scrollbar>
+                                    </div>
+                                </div>
+                            </div>
+                        </perfect-scrollbar>
+                    </div>
+                    <div id="detail" class="card ms-2">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div v-for="(item, index) in computerList" :key="index" :class="{'carousel-item': true, active: index === activeIndex}">
+                                    <div class="flex-container details">
+                                        <div class="col-3 details infos">
+                                            <div class="details infos header flex-container">
+                                              <div class="col-10">
+                                                <div class="row">
+                                                  <div class="col">
+                                                    <h5>{{ item.hostname }}:</h5>
+                                                    <h9>{{ item.IP }}</h9>
+                                                  </div>
+                                                </div>
+                                                <div class="row">
+                                                  <div class="col">
+                                                    <p>CPU usage: {{item.CPU}}% - Memory usage: {{item.MEMORY}}%</p>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="col-2">
+                                                <button class="btn btn-primary modifyButton" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = this.computerList[index]">Modify</button>
+                                                <button class="btn btn-primary deleteButton" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = this.computerList[index]">Delete</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          
+                                          <div class="col details process">
+                                            <div class="row">
+                                              <div class="col-6">
+                                                <h5 style="margin-bottom: 0;">Process</h5>
+                                                <div class="scroll-area-sm autoScroll" style="margin-top: 1em; height: 10.5em; overflow-y: auto;">
+                                                  <perfect-scrollbar class="ps-show-limits">
+                                                    <div style="position: static;" class="ps ps--active-y">
+                                                      <div class="ps-content">
+                                                        <div class="table-container">
+                                                          <table class="table" style="table-layout: fixed;">
+                                                            <thead class="sticky-top" style="    background-color: white;">
+                                                              <tr>
+                                                                <th style="width: 35%;" class="text-nowrap">Name: <i>PID</i></th>
+                                                                <th style="width: 10%;" class="text-nowrap">GPU</th>
+                                                                <th style="width: 10%;" class="text-nowrap">CPU</th>
+                                                                <th style="width: 15%;" class="text-nowrap">Memory</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody v-for="gpu in item.GPU" :key="gpu.id">
+                                                              <tr>
+                                                                <td colspan="4" class="text-center"><b>{{gpu.number}} - {{gpu.name}}</b></td>
+                                                              </tr>
+                                                              <tr v-for="proc in gpu.process" :key="proc.pid">
+                                                                <td class="text-nowrap">{{proc.exec}}: <i>{{proc.pid}}</i></td>
+                                                                <td class="text-nowrap">{{proc.gpu_memory}}%</td>
+                                                                <td class="text-nowrap">{{proc.cpu}}%</td>
+                                                                <td class="text-nowrap">{{proc.memory}}%</td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </table>
+                                                        </div>
+                                                      </div>  
+                                                    </div>
+                                                  </perfect-scrollbar>
+                                                </div>
+                                              </div>
+                                              <div class="col" :id="[item.IP + 'process']"></div>
+                                            </div>
+                                          </div>
+                                        <div :id="[item.IP + 'history']" class="col-3 details history"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -82,26 +147,24 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New computer</h5>
-                        <button class="btn-close" data-mdb-dismiss="modal"></button>
+                            <h5 class="modal-title" id="exampleModalLabel">New computer</h5>
+                            <button class="btn-close" data-mdb-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
-                        <form>
-                            <div class="col">
-                            <div class="col mb-4">
-                                IP address:
-                                <input name="address" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.IP">
-                            </div>
-                            <div class="col mb-4">
-                                Username:
-                                <input name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.username">
-                            </div>
-                            <div class="col mb-4">
-                                Password:
-                                <input type="password" name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.password">
-                            </div>
-                            </div>          
-                        </form>         
+                            <form>
+                                <div class="col mb-4">
+                                    IP address:
+                                    <input name="address" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.IP">
+                                </div>
+                                <div class="col mb-4">
+                                    Username:
+                                    <input name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.username">
+                                </div>
+                                <div class="col mb-4">
+                                    Password:
+                                    <input type="password" name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="newComputer.password">
+                                </div>
+                            </form>         
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
@@ -114,11 +177,11 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{selectedComputer.IP}} will be deleted. Confirm ?</h5>
-                        <button class="btn-close" data-mdb-dismiss="modal"></button>
+                            <h5 class="modal-title" id="exampleModalLabel">{{selectedComputer.IP}} will be deleted. Confirm ?</h5>
+                            <button class="btn-close" data-mdb-dismiss="modal"></button>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-mdb-dismiss="modal">Cancel</button>
+                            <button class="btn btn-secondary" data-mdb-dismiss="modal" @click="this.selectedComputer = {}">Cancel</button>
                             <button class="btn btn-danger btn-primary" @click="deleteComputer" data-mdb-dismiss="modal">Confirm</button>
                         </div>
                     </div>
@@ -132,36 +195,24 @@
                     </div>
                     <div class="sidebar-content">
                         <p id="name" :class="[{increased : collapsed}, {decreased : !collapsed}]">AURORA</p>
+
+<!--
+                        <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].temperature">
+                        <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].gpu_usage">
+                        <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].GPU[0].memory_usage">
+                        <input :class="{ hidden: collapsed }" type="number" v-model="computerList[0].lastResponse">
+-->
+
                         <div :class="['logs','card-body', {hidden: collapsed}]">
                             <div class="scroll-area-sm" style="height:40em">
                                 <perfect-scrollbar class="ps-show-limits">
                                     <div style="position: static;" class="ps ps--active-y">
                                         <div class="ps-content">
                                             <ul class="list-group list-group-flush">
-                                                <li class="list-group-item" v-if="logs[0] == null">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper ">
-                                                            <div class="widget-content-left col-12">
-                                                                <div class="row">
-                                                                    <div class="info col">
-                                                                        No new logs 
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                <li class="list-group-item" v-if="logs[0] == null"> No new logs</li>
                                                 <li class="list-group-item sb" v-else v-for="log in logs" :key="log.id">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper ">
-                                                            <div class="widget-content-left col-12">
-                                                                <div class="row">
-                                                                    <div class="info col" style="font-size: 0.73em;" @click="delLog(log)">
-                                                                        {{log.message}} - {{log.date}} 
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <div class="info col" style="font-size: 0.73em;" @click="delLog(log)">
+                                                        {{log.message}} - {{log.date}} 
                                                     </div>
                                                 </li>
                                             </ul>
