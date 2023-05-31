@@ -108,8 +108,12 @@ const connectToDatabase = async () => {
       const computerCollection = dbMongo.collection('computer');
       try{
         console.log(req.body);
-        const result = await computerCollection.insertOne(req.body);
-        console.log(result.insertedId);
+        const data = await computerCollection.findOne({IP: String(req.body.IP)})
+        var result = null;
+        if(Object.keys(data) !== 0){
+          result = await computerCollection.insertOne(req.body);
+          console.log(result.insertedId);
+        }
         res.send(result)
       }catch (err){
         console.log(err);
