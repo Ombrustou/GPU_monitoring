@@ -474,66 +474,68 @@
           logDate = now.toLocaleDateString()
           logDate = logDate + " - " + now.toLocaleTimeString()
 
-          newVal.forEach(function(computer, index) {
-            computer.GPU.forEach(function(gpu, indexGPU){
-              oldData = oldVal[index].GPU[indexGPU]
-              if(oldData != undefined) {
-                if((gpu.temperature !== oldData.temperature) || (gpu.gpu_usage !== oldData.gpu_usage) || (gpu.memory_usage !== oldData.memory_usage)){
-                  if(parseInt(gpu.temperature) >= 75 && localApp.overheating.indexOf(computer.IP+gpu.number) == -1){
-                    logMessage = computer.IP + ", card " + gpu.number + " overheating"
-                    newLog = {message:logMessage, date:logDate}
-                    localApp.logs.unshift(newLog)
-                    localApp.overheating.push(computer.IP + gpu.number)
-                  } else if(parseInt(gpu.temperature) < 65 && localApp.overheating.indexOf(computer.IP+gpu.number) != -1){
-                    logMessage = computer.IP + ", card " + gpu.number + " cooling down"
-                    newLog = {message:logMessage, date:logDate}
-                    localApp.logs.unshift(newLog)
-                    localApp.overheating.splice(localApp.overheating.indexOf(computer.IP + gpu.number), 1)
-                  }
+          if(oldVal != undefined){
+            newVal.forEach(function(computer, index) {
+              computer.GPU.forEach(function(gpu, indexGPU){
+                oldData = oldVal[index].GPU[indexGPU]
+                if(oldData != undefined) {
+                  if((gpu.temperature !== oldData.temperature) || (gpu.gpu_usage !== oldData.gpu_usage) || (gpu.memory_usage !== oldData.memory_usage)){
+                    if(parseInt(gpu.temperature) >= 75 && localApp.overheating.indexOf(computer.IP+gpu.number) == -1){
+                      logMessage = computer.IP + ", card " + gpu.number + " overheating"
+                      newLog = {message:logMessage, date:logDate}
+                      localApp.logs.unshift(newLog)
+                      localApp.overheating.push(computer.IP + gpu.number)
+                    } else if(parseInt(gpu.temperature) < 65 && localApp.overheating.indexOf(computer.IP+gpu.number) != -1){
+                      logMessage = computer.IP + ", card " + gpu.number + " cooling down"
+                      newLog = {message:logMessage, date:logDate}
+                      localApp.logs.unshift(newLog)
+                      localApp.overheating.splice(localApp.overheating.indexOf(computer.IP + gpu.number), 1)
+                    }
 
-                  if(gpu.gpu_usage >= 80 && localApp.overused.indexOf(computer.IP+gpu.number) == -1){
-                    logMessage = computer.IP + ", card " + gpu.number + " intensely used"
-                    newLog = {message:logMessage, date:logDate}
-                    localApp.logs.unshift(newLog)
-                    localApp.overused.push(computer.IP + gpu.number)
-                  } else if(parseInt(gpu.gpu_usage) < 70 && localApp.overused.indexOf(computer.IP+gpu.number) != -1){
-                    logMessage = computer.IP + ", card " + gpu.number + " back to a normal use"
-                    newLog = {message:logMessage, date:logDate}
-                    localApp.logs.unshift(newLog)
-                    localApp.overused.splice(localApp.overused.indexOf(computer.IP + gpu.number), 1)
-                  }
+                    if(gpu.gpu_usage >= 80 && localApp.overused.indexOf(computer.IP+gpu.number) == -1){
+                      logMessage = computer.IP + ", card " + gpu.number + " intensely used"
+                      newLog = {message:logMessage, date:logDate}
+                      localApp.logs.unshift(newLog)
+                      localApp.overused.push(computer.IP + gpu.number)
+                    } else if(parseInt(gpu.gpu_usage) < 70 && localApp.overused.indexOf(computer.IP+gpu.number) != -1){
+                      logMessage = computer.IP + ", card " + gpu.number + " back to a normal use"
+                      newLog = {message:logMessage, date:logDate}
+                      localApp.logs.unshift(newLog)
+                      localApp.overused.splice(localApp.overused.indexOf(computer.IP + gpu.number), 1)
+                    }
 
-                  if(gpu.memory_usage >= 75 && localApp.overloading.indexOf(computer.IP+gpu.number) == -1){
-                    logMessage = computer.IP + ", card " + gpu.number + "'s memory overloading"
-                    newLog = {message:logMessage, date:logDate}
-                    localApp.logs.unshift(newLog)
-                    localApp.overloading.push(computer.IP + gpu.number)
-                  } else if(parseInt(gpu.memory_usage) < 65 && localApp.overloading.indexOf(computer.IP+gpu.number) != -1){
-                    logMessage = computer.IP + ", card " + gpu.number + "'s memory emptying"
-                    newLog = {message:logMessage, date:logDate}
-                    localApp.logs.unshift(newLog)
-                    localApp.overloading.splice(localApp.overloading.indexOf(computer.IP + gpu.number), 1)
-                  }                
+                    if(gpu.memory_usage >= 75 && localApp.overloading.indexOf(computer.IP+gpu.number) == -1){
+                      logMessage = computer.IP + ", card " + gpu.number + "'s memory overloading"
+                      newLog = {message:logMessage, date:logDate}
+                      localApp.logs.unshift(newLog)
+                      localApp.overloading.push(computer.IP + gpu.number)
+                    } else if(parseInt(gpu.memory_usage) < 65 && localApp.overloading.indexOf(computer.IP+gpu.number) != -1){
+                      logMessage = computer.IP + ", card " + gpu.number + "'s memory emptying"
+                      newLog = {message:logMessage, date:logDate}
+                      localApp.logs.unshift(newLog)
+                      localApp.overloading.splice(localApp.overloading.indexOf(computer.IP + gpu.number), 1)
+                    }                
+                  }
+                }
+              })
+            
+              //Verification and logging of the connections and disconnections
+              if(computer.lastResponse !== oldVal[index].lastResponse){
+                if(computer.lastResponse != 0 && localApp.disconnectedPC.indexOf(computer.IP) == -1){
+                  logMessage = computer.IP + " offline"
+                  newLog = {message:logMessage, date:logDate}
+                  localApp.logs.unshift(newLog)
+                  localApp.disconnectedPC.push(computer.IP)
+                  console.log(localApp.disconnectedPC)
+                } else if(computer.lastResponse == 0 ){
+                  logMessage = computer.IP + " online"
+                  newLog = {message:logMessage, date:logDate}
+                  localApp.logs.unshift(newLog)
+                  localApp.disconnectedPC.splice(localApp.disconnectedPC.indexOf(computer.IP), 1)
                 }
               }
-            })
-          
-            //Verification and logging of the connections and disconnections
-            if(computer.lastResponse !== oldVal[index].lastResponse){
-              if(computer.lastResponse != 0 && localApp.disconnectedPC.indexOf(computer.IP) == -1){
-                logMessage = computer.IP + " offline"
-                newLog = {message:logMessage, date:logDate}
-                localApp.logs.unshift(newLog)
-                localApp.disconnectedPC.push(computer.IP)
-                console.log(localApp.disconnectedPC)
-              } else if(computer.lastResponse == 0 ){
-                logMessage = computer.IP + " online"
-                newLog = {message:logMessage, date:logDate}
-                localApp.logs.unshift(newLog)
-                localApp.disconnectedPC.splice(localApp.disconnectedPC.indexOf(computer.IP), 1)
-              }
-            }
-          });
+            });
+          }
         },
         deep: true
       },
