@@ -143,7 +143,7 @@ while True:
                     db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'], "hostname": hostname, "last_reboot":lastReboot},"$push": {"history":{'$each': [{"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}],'$slice': -lasts_statements}}},True)
                 else:
                     history = db.data.find_one({"IP":computer['IP']})["history"]
-                    history[-1]={"timestamp":time.time(), "GPU":obj}
+                    history[-1]={"timestamp":time.time(), "GPU":obj, "CPU":cpu, "MEMORY":memory}
                     #Update the document for the IP, if it doesn't exist insert a new one
                     db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'], "hostname": hostname, "last_reboot":lastReboot,"history":history}},True)
 
