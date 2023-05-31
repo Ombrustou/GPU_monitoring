@@ -109,10 +109,13 @@ const connectToDatabase = async () => {
       try{
         console.log(req.body);
         const data = await computerCollection.findOne({IP: String(req.body.IP)})
+        console.log("The Data => ",data)
         var result = null;
-        if(Object.keys(data) !== 0){
+        if(data == null){
           result = await computerCollection.insertOne(req.body);
           console.log(result.insertedId);
+        }else{
+          console.log("Computer already exist")
         }
         res.send(result)
       }catch (err){
