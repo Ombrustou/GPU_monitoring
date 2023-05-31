@@ -79,7 +79,8 @@ const connectToDatabase = async () => {
         }
         lastResponse = lasttimeStamp - lastLog;
 
-        var lastHist = item.history
+        var lastHist = item.history[item.history.length-1]
+        console.log(lastHist)
         delete lastHist.GPU
 
         delete item.history;
