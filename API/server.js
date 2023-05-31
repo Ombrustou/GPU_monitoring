@@ -78,10 +78,15 @@ const connectToDatabase = async () => {
           }
         }
         lastResponse = lasttimeStamp - lastLog;
+
+        var lastHist = item.history
+        delete lastHist.GPU
+
         delete item.history;
         delete item._id;
         return {
           ...item,
+          ...lastHist,
           GPU: lastGPUArray,
           timestamp: lasttimeStamp, //Timestamp of the last GPU
           lastResponse: lastResponse // Last response = 0 if there is GPU's information.
