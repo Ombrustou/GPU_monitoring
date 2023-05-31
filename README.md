@@ -15,6 +15,7 @@ AURORA is a powerful tool designed to monitor GPU utilization on remote machines
 - [Components](#components)
 - [Getting Started with Docker-Compose](#getting-started-with-docker-compose)
 - [Getting Started with Docker](#getting-started-with-docker)
+- [Getting Started With Docker Built Image](#getting-started-with-built-images)
 - [Contributors](#contributors)
 
 ## Introduction
@@ -62,35 +63,68 @@ sudo docker-compose up
 
 The Docker-Compose command will build and start the necessary containers for AURORA, including the API, data gathering, display, and data storage components.
 
-- Once the containers are up and running, if it's the first time you run it you will need to [initialize the database](./data_storage/README.md#initialize-the-database)
-
 Now Aurora should be running and the UI should be accessible in your navigator [here](http://localhost:80)
 
 ## Getting Started with Docker
 
-To get started with GPU monitoring-AURORA using Docker, follow these steps:
+To get started with GPU monitoring-AURORA using Docker follow these steps:
 
-- Make sure you have Docker installed on your machine. If not, please refer to the [Docker documentation](https://docs.docker.com) for instructions on how to install it.
+- Make sure you have Docker installed on your machine. If not, please refer to the [Docker documentation](https://docs.docker.com) for instructions on how to install it. 
 
-- Clone the GPU Monitoring repository to your local machine:
+    ### **Using pre-built Images**
+    
+    - Create a folder to host the database
 
-```bash
-git clone https://github.com/Ombrustou/GPU_monitoring.git
-```
+    ```bash
+    mkdir data
+    ```
+    - Run the data_storage container
 
-- Navigate to the root directory of the repository:
+    ```bash
+    docker run -d --name data-storage-container -v data:/data/db --network=host ghcr.io/ombrustou/gpu_monitoring/data-storage:latest
+    ```
 
-```bash
-cd GPU_monitoring
-```
+    - Run the API container
 
-- [Build and run the data_storage docker](./data_storage/README.md#getting-started-with-docker)
+    ```bash
+    docker run -d --name api-container --network=host ghcr.io/ombrustou/gpu_monitoring/api:latest
+    ``` 
 
-- [Build and run the API docker](./API/README.md#getting-started-with-docker)
+    - Run the Gathering_DATA container
 
-- [Build and run the Gathering_DATA docker](./Gathering_DATA//README.md#getting-started-with-docker)
+    ```bash
+    docker run -d --name data-gathering-container --network=host ghcr.io/ombrustou/gpu_monitoring/gathering-data:latest
+    ```
 
-- [Build and run the Display docker](./Display/README.md#getting-started-with-docker)
+    - Run the Display container
+
+    ```bash
+    docker run -d --name display-container --network=host ghcr.io/ombrustou/gpu_monitoring/gathering-data:latest
+    ```
+
+    Everything should be running fine. If you get any problem with docker refer to the [Building yourself the Images](#building-yourself-the-images) part.
+
+    ### **Building yourself the Images**
+    - Clone the GPU Monitoring repository to your local machine (only if you want to build images by youself):
+
+    ```bash
+    git clone https://github.com/Ombrustou/GPU_monitoring.git
+    ```
+
+    - Navigate to the root directory of the repository:
+
+    ```bash
+    cd GPU_monitoring
+    ```
+
+    - [Build and run the data_storage](./data_storage/README.md#getting-started-with-docker)
+
+    - [Build and run the API](./API/README.md#getting-started-with-docker)
+
+    - [Build and run the Gathering_DATA](./Gathering_DATA//README.md#getting-started-with-docker)
+
+    - [Build and run the Display](./Display/README.md#getting-started-with-docker)
+
 
 Feel free to adjust the container names, ports, and shared folder path to suit your specific setup. Enjoy monitoring and analyzing GPU activity using AURORA !
 

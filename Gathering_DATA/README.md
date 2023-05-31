@@ -4,7 +4,7 @@ Welcome to the DATA_Gathering folder of the GPU Monitoring GitHub repository! Th
 
 ## Table of Contents
 - [Contents](#contents)
-- [Getting Started](#getting-started)
+- [Getting Started with Docker](#getting-started)
 - [Contributors](#contributors)
 ## Contents
 
