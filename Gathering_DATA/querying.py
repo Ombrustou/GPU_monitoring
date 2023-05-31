@@ -47,7 +47,15 @@ while True:
 
             stdin, stdout, stderr = client.exec_command('last reboot')
             output = stdout.read().decode()
-            traitment = output.split("\n")[1].split(" ")[3:8]
+
+            lines = output.split('\n')
+            res = "No information"
+            for line in lines:
+                if("wtmp" in line):
+                    res = line
+                    break
+
+            traitment = res.split(" ")[3:8]
             traitment[-2] = ":".join(traitment[-2].split(":")[:-1])
             lastReboot = " ".join(traitment)
 
