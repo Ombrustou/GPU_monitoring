@@ -1601,9 +1601,11 @@
         },
         addComputer: function(){
           axios.post("http://localhost:3001/computer", this.newComputer)
+          this.gatherLast()
         },
         deleteComputer: function() {
           axios.delete("http://localhost:3001/computer"+ this.selectedComputer)
+          this.gatherLast()
         },
 
         displayHistory: function(index) {
