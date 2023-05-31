@@ -32,7 +32,6 @@ db = mongoClient.monitoring
 
 lastHistory = {}
 while True:
-    # Query the collection for documents with the 'name' field equal to 'John'
     computers = db.computer.find({})
 
     # Iterate over the cursor and print each document
