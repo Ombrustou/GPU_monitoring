@@ -2,8 +2,6 @@
 
 This repository is in charge of the creation of the database for the GPU_Monitoring
 
-init.js is a file to execute to initialize the database before it first utilization, or after erasing it.
-
 ## Getting Started with Docker
 
 To get started with data_storage part of GPU monitoring-AURORA, follow these steps:
