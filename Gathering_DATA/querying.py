@@ -34,7 +34,7 @@ lastHistory = {}
 while True:
     computers = db.computer.find({})
 
-    # Iterate over the cursor and print each document
+    # Iterate over the cursor
     for computer in computers:
         print(computer['IP'])
         #Create a client
