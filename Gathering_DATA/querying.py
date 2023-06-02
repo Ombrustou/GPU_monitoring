@@ -159,7 +159,7 @@ while True:
         except:
             print("Couldn't reach ", computer['IP'])
             #Update the document for the IP, if it doesn't exist insert a new one
-            db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP'],"last_reboot":"No information"},"$push": {"history":{"timestamp":time.time()}}},True)
+            db.data.update_one({"IP":computer['IP']},{"$set":{"IP":computer['IP']},"$push": {"history":{"timestamp":time.time()}}},True)
         finally:
             client.close()
 
