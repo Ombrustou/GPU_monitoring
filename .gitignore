@@ -1,4 +1,7 @@
 API/node_modules
+uppload_package.sh
+data
+!data/README.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
