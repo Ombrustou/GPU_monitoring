@@ -99,7 +99,7 @@ To get started with GPU monitoring-AURORA using Docker follow these steps:
     - Run the Display container
 
     ```bash
-    docker run -d --name display-container --network=host ghcr.io/ombrustou/gpu_monitoring/gathering-data:latest
+    docker run -d --name display-container --network=host ghcr.io/ombrustou/gpu_monitoring/display:latest
     ```
 
     Everything should be running fine. If you get any problem with docker refer to the [Building yourself the Images](#building-yourself-the-images) part.
