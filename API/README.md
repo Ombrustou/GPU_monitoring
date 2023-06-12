@@ -51,7 +51,16 @@ history: [
           max_memory: 11175,
           memory_usage: 0,
           gpu_usage: 0,
-          process: []
+          process: [
+            {
+              user: 'Me',
+              pid: 123,
+              cpu: 20,
+              memory: 42,
+              gpu_memory: 15,
+              exec: 'smt.py'
+            }
+          ]
         },
         {
           uuid: 'GPU-uuid2',
