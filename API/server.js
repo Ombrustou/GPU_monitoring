@@ -158,24 +158,41 @@ const connectToDatabase = async () => {
     app.put('/computer/:ip', async (req, res) => {
       const { ip } = req.params;
       const { IP, username, password } = req.body;
-    
+
+      const canMod = true;
+
       const computerCollection = dbMongo.collection('computer');
-      try {
-        const result = await computerCollection.updateOne(
-          { IP: String(ip) },
-          { $set: { IP, username, password } }
-        );
-    
-        console.log(result);
-        
-        if (result.modifiedCount === 1) {
-          res.sendStatus(204);
-        } else {
-          res.sendStatus(404);
+      try{
+        const result = await computerCollection.findOne({ IP: String(IP) })
+        if(result != null){
+          canMod = false
+          res.status(400).send('A computer is alreadyregistered with the IP given');
+        }else{
+          canMod = true
         }
       } catch (err) {
         console.log(err);
-        res.status(500).send('Error while updating a computer');
+        res.status(500).send('Error while fetching a computer');
+      }
+    
+      if(canMod){
+        try {
+          const result = await computerCollection.updateOne(
+            { IP: String(ip) },
+            { $set: { IP, username, password } }
+          );
+      
+          console.log(result);
+          
+          if (result.modifiedCount === 1) {
+            res.sendStatus(204);
+          } else {
+            res.sendStatus(404);
+          }
+        } catch (err) {
+          console.log(err);
+          res.status(500).send('Error while updating a computer');
+        }
       }
     });
     
