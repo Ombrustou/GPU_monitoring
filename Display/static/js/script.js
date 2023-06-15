@@ -1,8 +1,3 @@
-  /**
-   * 
-   */
-
-
   const app = Vue.createApp({
 
       data() {
@@ -1607,13 +1602,6 @@
         },
         modifyComputer: async function(index){
           await axios.put("http://localhost:3001/computer" + this.computerList[index].IP, this.selectedComputer)
-          .then(function(response){
-            if(response == 204){
-              this.computerList[index].IP = this.selectedComputer.IP
-              this.computerList[index].hostname = this.selectedComputer.username
-              this.computerList[index].password = this.selectedComputer.password
-            }
-          })
           this.gatherLast()
 
         },
