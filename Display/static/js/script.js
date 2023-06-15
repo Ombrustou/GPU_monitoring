@@ -1601,12 +1601,12 @@ const app = Vue.createApp({
       this.gatherLast()
     },
     modifyComputer: async function(index){
-      await axios.put("http://localhost:3001/computer/" + this.computerList[index].IP, this.selectedComputer)
+      await axios.put("http://localhost:3001/computer/" + this.computerList[this.activeIndex].IP, this.selectedComputer)
       this.gatherLast()
 
     },
     deleteComputer: async function() {
-      await axios.delete("http://localhost:3001/computer/"+ this.selectedComputer)
+      await axios.delete("http://localhost:3001/computer/"+ this.selectedComputer.IP)
       this.gatherLast()
     },
 
@@ -2004,7 +2004,7 @@ const app = Vue.createApp({
    * This mounted() function is called whenever the application is mounted
    * Define an interval in which the informations will be gathered.
    * 1000 -> 1second
-   * Set by default to 30000 -> 30 seconds
+   * Set by default to 30000 -> 30 secondes
    */
   async mounted(){
     console.log('App Mounted');
