@@ -90,7 +90,7 @@
                                                 </div>
                                               </div>
                                               <div class="col-2">
-                                                <button class="btn btn-primary modifyButton" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = this.computerList[index]">Modify</button>
+                                                <button class="btn btn-primary modifyButton" data-mdb-toggle="modal" data-mdb-target="#formModifyModal" @click="this.selectedComputer = this.computerList[index]">Modify</button>
                                                 <button class="btn btn-primary deleteButton" data-mdb-toggle="modal" data-mdb-target="#deleteModal" @click="this.selectedComputer = this.computerList[index]">Delete</button>
                                               </div>
                                             </div>
@@ -147,7 +147,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New computer</h5>
+                            <h5 class="modal-title">New computer</h5>
                             <button class="btn-close" data-mdb-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
@@ -190,11 +190,41 @@
                 });
 
             </script>
+             <div class="modal fade" id="formModifyModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{{selectedComputer.hostname}}</h5>
+                            <button class="btn-close" data-mdb-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="col mb-4">
+                                    IP address:
+                                    <input name="address" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="selectedComputer.IP" required>
+                                </div>
+                                <div class="col mb-4">
+                                    Username:
+                                    <input name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="selectedComputer.username" required>
+                                </div>
+                                <div class="col mb-4">
+                                    Password:
+                                    <input type="password" name="progress" class="form-control form-control-sm" aria-label=".form-control-sm example" v-model="selectedComputer.password" required>
+                                </div>
+                            </form>         
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-mdb-dismiss="modal" @click="this.selectedComputer = {}">Close</button>
+                            <button class="btn btn-primary danger" @click.prevent="modifyComputer(index)" data-mdb-dismiss="modal">Add computer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="modal fade" id="deleteModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{selectedComputer.IP}} will be deleted. Confirm ?</h5>
+                            <h5 class="modal-title">{{selectedComputer.IP}} will be deleted. Confirm ?</h5>
                             <button class="btn-close" data-mdb-dismiss="modal"></button>
                         </div>
                         <div class="modal-footer">
