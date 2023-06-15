@@ -157,12 +157,14 @@ const connectToDatabase = async () => {
 
     app.put('/computer/:ip', async (req, res) => {
       const { ip } = req.params;
-      const { IP, username, password } = req.body;
+      const IP = req.body.IP ;
+      const username = req.body.username;
+      const password = req.body.password ; 
 
       canMod = true;
 
+      const computerCollection = dbMongo.collection('computer');
       if(ip != IP){
-        const computerCollection = dbMongo.collection('computer');
         try{
           const result = await computerCollection.findOne({ IP: String(IP) })
           if(result != null){
@@ -181,12 +183,12 @@ const connectToDatabase = async () => {
         try {
           const result = await computerCollection.updateOne(
             { IP: String(ip) },
-            { $set: { IP, username, password } }
+            { $set: { IP:IP, username:username, password:password } }
           );
       
           console.log(result);
           
-          if (result.modifiedCount === 1) {
+          if (result.matchedCount === 1) {
             res.sendStatus(204);
           } else {
             res.sendStatus(404);
