@@ -19,8 +19,11 @@ To make it work you need to have a complete object that look like this in the re
 
 > {"IP":"192.27.0.1","username":"my_username","password":"my_password"}
 
-If you want to update this computer you can use */computer/:ip/:IP/:username/:password*
-with *ip* as the previous IP of the computer and *IP* as the new one.
+If you want to update this computer you can use */computer/:ip*
+with *ip* as the previous IP of the computer. you need to give the modified elements like this :
+
+> {"IP":"192.168.0.100","username":"admin","password":"password123"}
+
 
 You also need to give the new object in the request body.
 
@@ -87,6 +90,20 @@ hostname: 'JohnDoe',
 last_reboot: 'May  2 16:15 2023'
 ```
 
+## Data to test the API
+
+You can use the following commands to verify if the API is working well.
+
+To add a computer
+> curl -X POST http://localhost:3001/computer -H 'Content-Type: application/json' -d '{"IP":"172.24.198.42","username":"my_username","password":"my_password"}'
+
+To modify a computer
+>curl -X PUT http://localhost:3001/computer/172.24.198.42 -H "Content-Type: application/json" -d '{"IP":"192.168.0.100","username":"admin","password":"password123"}' 
+
+To delete a computer
+>curl -X DELETE http://localhost:3001/computer/192.168.0.100 -H 'Content-Type: application/json' -d '{"IP": "192.168.0.100"}'
+
+
 ## Getting Started with Docker
 
 To get started with API part of GPU monitoring-AURORA, follow these steps:
@@ -112,16 +129,3 @@ docker run -d --name api-container --network=host api
 ```
 
 The api container will be running and accessible on port 3001. It is linked to the data-storage-container to ensure access to the data storage.
-
-## Data to test the API
-
-You can use the following commands to verify if the API is working well.
-
-To add a computer
-> curl -X POST http://localhost:3001/computer -H 'Content-Type: application/json' -d '{"IP":"172.24.198.42","username":"my_username","password":"my_password"}'
-
-To modify a computer
->curl -X PUT http://localhost:3001/computer/172.24.198.42 -H "Content-Type: application/json" -d '{"IP":"192.168.0.100","username":"admin","password":"password123"}' 
-
-To delete a computer
->curl -X DELETE http://localhost:3001/computer/192.168.0.100 -H 'Content-Type: application/json' -d '{"IP": "192.168.0.100"}'
