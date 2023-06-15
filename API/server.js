@@ -159,20 +159,22 @@ const connectToDatabase = async () => {
       const { ip } = req.params;
       const { IP, username, password } = req.body;
 
-      const canMod = true;
+      canMod = true;
 
-      const computerCollection = dbMongo.collection('computer');
-      try{
-        const result = await computerCollection.findOne({ IP: String(IP) })
-        if(result != null){
-          canMod = false
-          res.status(400).send('A computer is alreadyregistered with the IP given');
-        }else{
-          canMod = true
+      if(ip != IP){
+        const computerCollection = dbMongo.collection('computer');
+        try{
+          const result = await computerCollection.findOne({ IP: String(IP) })
+          if(result != null){
+            canMod = false
+            res.status(400).send('A computer is already registered with the IP given');
+          }else{
+            canMod = true
+          }
+        } catch (err) {
+          console.log(err);
+          res.status(500).send('Error while fetching a computer');
         }
-      } catch (err) {
-        console.log(err);
-        res.status(500).send('Error while fetching a computer');
       }
     
       if(canMod){
