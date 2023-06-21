@@ -2011,7 +2011,7 @@
         await this.gatherLast()
         setInterval(() => {
           this.gatherLast();
-        }, 3000000);
+        }, 3000);
 
         setInterval(() => {
           this.autoScroll();
