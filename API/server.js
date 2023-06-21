@@ -136,14 +136,10 @@ const connectToDatabase = async () => {
         console.log(result);
         if(result.deletedCount===1){
           try {
-            result = await collectionMongo.deleteOne({IP: String(req.params.ip)})
-            if(result.deletedCount===1){
-              res.sendStatus(204)
-            }else{
-              res.sendStatus(404)
-            }
+            await collectionMongo.deleteOne({IP: String(req.params.ip)})
+            res.sendStatus(204)
           } catch (error) {
-            console.log(err)
+            console.log(error)
             res.status(500).send('Error while trying to delete a data')
           }
         }else{
